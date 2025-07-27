@@ -7,15 +7,16 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
   };
 
   home-manager.users.hayley =
     { pkgs, ... }:
     {
-      home.packages = [ ];
+      home.packages = with pkgs; [
+        neofetch
+        htop
+        cmatrix
+      ];
       home.stateVersion = "25.05";
 
       programs.git = {

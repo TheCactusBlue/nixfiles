@@ -2,6 +2,7 @@
 {
   imports = [
     ../drivers/nvidia.nix
+    ../drivers/rgb.nix
 
     ../tools/hyprland.nix
     ../tools/vscode.nix
@@ -21,7 +22,10 @@
     ../fonts.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   networking.hostName = "academy-city"; # Define your hostname.
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -51,9 +55,6 @@
     cachix
 
     # Vanity
-    neofetch
-    htop
-    openrgb-with-all-plugins
     i2c-tools
   ];
 }
