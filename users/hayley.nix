@@ -31,6 +31,7 @@
         userEmail = "thecactusblue@gmail.com";
         extraConfig = {
           push.AutoSetupRemote = true;
+          init.defaultBranch = "main";
         };
       };
     };
