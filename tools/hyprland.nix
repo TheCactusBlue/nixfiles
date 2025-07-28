@@ -8,6 +8,7 @@
     wofi
     waybar
     pavucontrol
+    hyprshot
   ];
   security.polkit.enable = true;
 }
