@@ -4,8 +4,10 @@
   environment.systemPackages = with pkgs; [
     hypridle
     hyprpolkitagent
+    hyprpaper
     wofi
     waybar
+    pavucontrol
   ];
   security.polkit.enable = true;
 }

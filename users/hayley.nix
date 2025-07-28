@@ -16,6 +16,12 @@
         neofetch
         htop
         cmatrix
+        cbonsai
+        cava
+        zenith-nvidia
+        hyfetch
+        cointop
+        pciutils
       ];
       home.stateVersion = "25.05";
 

@@ -1,12 +1,15 @@
 { config, pkgs, ... }:
 {
-  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
-    ohMyZsh = { # "ohMyZsh" without Home Manager
+    enable = true;
+    ohMyZsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = [ "git" ];
       theme = "robbyrussell";
     };
+  };
+  environment.shellAliases = {
+    imgcat = "kitten icat";
   };
 }

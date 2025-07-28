@@ -5,6 +5,7 @@
     ../drivers/rgb.nix
 
     ../tools/hyprland.nix
+    # ../tools/waybar.nix
     ../tools/vscode.nix
     ../tools/zsh.nix
     ../tools/home-manager.nix
@@ -15,7 +16,6 @@
     ../programming/rust.nix
 
     ../users/hayley.nix
-
     ../games/minecraft.nix
     ../games/hoyoverse.nix
 
@@ -48,13 +48,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nixfmt-rfc-style
     ghostty
+    kitty
     direnv
     cachix
-
-    # Vanity
-    i2c-tools
   ];
 }
+``
