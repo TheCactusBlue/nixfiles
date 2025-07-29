@@ -11,6 +11,7 @@
     ../tools/home-manager.nix
 
     ../programming/claude-code.nix
+    ../programming/docker.nix
     ../programming/git.nix
     ../programming/nodejs.nix
     ../programming/rust.nix

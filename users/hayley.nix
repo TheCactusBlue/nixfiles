@@ -6,12 +6,14 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
   };
 
   home-manager.users.hayley =
     { pkgs, ... }:
     {
+      nixpkgs.config.allowUnfree = true;
       home.packages = with pkgs; [
         neofetch
         htop
@@ -22,6 +24,8 @@
         hyfetch
         cointop
         pciutils
+        discord
+        pinta
       ];
       home.stateVersion = "25.05";
 
