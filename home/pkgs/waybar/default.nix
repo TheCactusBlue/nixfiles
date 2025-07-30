@@ -35,8 +35,8 @@
           capslock = true;
           format = "{name} {icon}";
           format-icons = {
-            locked = "";
-            unlocked = "";
+            locked = "";
+            unlocked = "";
           };
         };
 
@@ -49,7 +49,7 @@
           show-empty = false;
           format-icons = [
             ""
-            ""
+            ""
           ];
           tooltip = true;
           tooltip-format = "{app}: {title}";
@@ -62,21 +62,21 @@
           unknown-tag = "N/A";
           interval = 5;
           consume-icons = {
-            on = " ";
+            on = " ";
           };
           random-icons = {
             off = "<span color=\"#f53c3c\"></span> ";
-            on = " ";
+            on = " ";
           };
           repeat-icons = {
-            on = " ";
+            on = " ";
           };
           single-icons = {
-            on = "1 ";
+            on = "1 ";
           };
           state-icons = {
-            paused = "";
-            playing = "";
+            paused = "";
+            playing = "";
           };
           tooltip-format = "MPD (connected)";
           tooltip-format-disconnected = "MPD (disconnected)";
@@ -85,8 +85,8 @@
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = "";
+            deactivated = "";
           };
         };
 
@@ -100,21 +100,21 @@
         };
 
         cpu = {
-          format = "{usage}% ";
+          format = "{usage}% ";
           tooltip = false;
         };
 
         memory = {
-          format = "{}% ";
+          format = "{}% ";
         };
 
         temperature = {
           critical-threshold = 80;
           format = "{temperatureC}°C {icon}";
           format-icons = [
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
           ];
         };
 
@@ -123,40 +123,40 @@
           tooltip-format = "Power profile: {profile}\nDriver: {driver}";
           tooltip = true;
           format-icons = {
-            default = "";
-            performance = "";
-            balanced = "";
-            power-saver = "";
+            default = "";
+            performance = "";
+            balanced = "";
+            power-saver = "";
           };
         };
 
         network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ipaddr}/{cidr} ";
-          tooltip-format = "{ifname} via {gwaddr} ";
-          format-linked = "{ifname} (No IP) ";
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = "{ipaddr}/{cidr} ";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          format-linked = "{ifname} (No IP) ";
           format-disconnected = "Disconnected ⚠";
           format-alt = "{ifname}: {ipaddr}/{cidr}";
         };
 
         pulseaudio = {
           format = " {volume}%  {icon}    {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
+          format-bluetooth = "{volume}% {{icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
           format-muted = " {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
+          format-source = "{volume}% ";
+          format-source-muted = "";
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
             default = [
-              ""
-              ""
-              ""
+              ""
+              ""
+              ""
             ];
           };
           on-click = "pavucontrol";
@@ -167,7 +167,7 @@
           return-type = "json";
           max-length = 40;
           format-icons = {
-            spotify = "";
+            spotify = "";
             default = "🎜";
           };
           escape = true;
