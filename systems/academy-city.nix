@@ -16,7 +16,7 @@
     ../programming/nodejs.nix
     ../programming/rust.nix
 
-    ../users/hayley.nix
+    ../users/hayley/hayley.nix
     ../games/minecraft.nix
     ../games/hoyoverse.nix
 
