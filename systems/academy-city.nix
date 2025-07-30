@@ -4,7 +4,6 @@
     ../drivers/nvidia.nix
     ../drivers/rgb.nix
 
-    ../tools/vscode.nix
     ../home/home-manager.nix
 
     ../programming/claude-code.nix

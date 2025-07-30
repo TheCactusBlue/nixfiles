@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = map (x: ../../home/pkgs + x) [
+  imports = map (path: ../../home/pkgs + path) [
     /hyprland/default.nix
     /waybar/default.nix
     /ghostty/default.nix
@@ -10,6 +10,9 @@
     /git/default.nix
     /nodejs/default.nix
     /rust/default.nix
+
+    # development tools
+    /vscode/default.nix
 
     # gaming
     /minecraft/default.nix
