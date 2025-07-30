@@ -39,7 +39,6 @@
     wofi
     pavucontrol
     hyprshot
-    ghostty
     nautilus
     brightnessctl
     playerctl

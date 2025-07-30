@@ -4,20 +4,12 @@
     ../drivers/nvidia.nix
     ../drivers/rgb.nix
 
-    # ../tools/hyprland.nix
-    # ../tools/waybar.nix
     ../tools/vscode.nix
-    ../tools/zsh.nix
-    ../tools/home-manager.nix
+    ../home/home-manager.nix
 
     ../programming/claude-code.nix
-    ../programming/docker.nix
-    ../programming/git.nix
-    ../programming/nodejs.nix
-    ../programming/rust.nix
 
     ../users/hayley/hayley.nix
-    ../games/minecraft.nix
     ../games/hoyoverse.nix
 
     ../fonts.nix
@@ -42,18 +34,17 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Install firefox.
+  programs.zsh.enable = true;
   programs.hyprland.enable = true; # Need for global hyprland
   programs.firefox.enable = true;
+  virtualisation.docker.enable = true;
   services.flatpak.enable = true;
   security.polkit.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nixfmt-rfc-style
-    ghostty
     kitty
     direnv
     cachix

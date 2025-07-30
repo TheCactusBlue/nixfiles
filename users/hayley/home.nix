@@ -3,7 +3,18 @@
   imports = [
     ../../home/pkgs/hyprland/default.nix
     ../../home/pkgs/waybar/default.nix
+    ../../home/pkgs/ghostty/default.nix
+
+    # development
+    ../../home/pkgs/zsh/default.nix
+    ../../home/pkgs/git/default.nix
+    ../../home/pkgs/nodejs/default.nix
+    ../../home/pkgs/rust/default.nix
+
+    # gaming
+    ../../home/pkgs/minecraft/default.nix
   ];
+
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     neofetch

@@ -3,6 +3,7 @@
   users.users.hayley = {
     isNormalUser = true;
     description = "hayley";
+    shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
