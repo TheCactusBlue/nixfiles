@@ -43,8 +43,10 @@
   };
 
   # Install firefox.
+  programs.hyprland.enable = true; # Need for global hyprland
   programs.firefox.enable = true;
   services.flatpak.enable = true;
+  security.polkit.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

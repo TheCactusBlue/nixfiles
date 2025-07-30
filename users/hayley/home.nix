@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../tools/hyprland/hyprland.nix
+    ../../home/pkgs/hyprland/default.nix
+    ../../home/pkgs/waybar/default.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
