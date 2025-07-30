@@ -4,7 +4,7 @@
     ../drivers/nvidia.nix
     ../drivers/rgb.nix
 
-    ../tools/hyprland.nix
+    # ../tools/hyprland.nix
     # ../tools/waybar.nix
     ../tools/vscode.nix
     ../tools/zsh.nix
