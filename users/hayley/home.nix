@@ -1,18 +1,18 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../../home/pkgs/hyprland/default.nix
-    ../../home/pkgs/waybar/default.nix
-    ../../home/pkgs/ghostty/default.nix
+  imports = map (x: ../../home/pkgs + x) [
+    /hyprland/default.nix
+    /waybar/default.nix
+    /ghostty/default.nix
 
     # development
-    ../../home/pkgs/zsh/default.nix
-    ../../home/pkgs/git/default.nix
-    ../../home/pkgs/nodejs/default.nix
-    ../../home/pkgs/rust/default.nix
+    /zsh/default.nix
+    /git/default.nix
+    /nodejs/default.nix
+    /rust/default.nix
 
     # gaming
-    ../../home/pkgs/minecraft/default.nix
+    /minecraft/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
