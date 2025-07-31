@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  theme = import ../../../themes/tokyo-night.nix;
+  theme = config.custom.themes.${config.custom.currentTheme};
 in
 {
   programs.ghostty = {

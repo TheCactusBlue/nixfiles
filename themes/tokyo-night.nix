@@ -1,4 +1,5 @@
 {
+  vscode = "Tokyo Night";
   background = "#1a1b26";
   foreground = "#c0caf5";
   ansi = {

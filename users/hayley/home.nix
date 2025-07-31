@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = map (path: ../../home/pkgs + path) [
+  imports = [
+    ../../options/themes.nix
+  ]
+  ++ map (path: ../../home/pkgs + path) [
     /hyprland/default.nix
     /waybar/default.nix
     /ghostty/default.nix
@@ -31,7 +34,6 @@
     discord
     pinta
   ];
-  home.stateVersion = "25.05";
 
   programs.git = {
     enable = true;
@@ -47,4 +49,6 @@
     enable = true;
     settings = { };
   };
+
+  home.stateVersion = "25.05";
 }
