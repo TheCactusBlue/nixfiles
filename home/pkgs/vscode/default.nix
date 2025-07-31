@@ -25,6 +25,7 @@
 
         # Theming
         enkia.tokyo-night
+        zhuangtongfa.material-theme # This is actually One Dark Pro
         pkief.material-icon-theme
       ];
 
@@ -45,7 +46,7 @@
         "[css]" = {
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
         };
-        "workbench.colorTheme" = "Tokyo Night";
+        "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
       };
     };
   };

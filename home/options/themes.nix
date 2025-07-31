@@ -52,6 +52,7 @@ with lib;
     );
     description = "Theme definitions with ANSI colors, VSCode theme, and foreground/background colors";
     default = {
+      one-dark = import ../themes/one-dark.nix;
       tokyo-night = import ../themes/tokyo-night.nix;
     };
   };

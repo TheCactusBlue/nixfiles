@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../options/themes.nix
+    ../../home/options/themes.nix
   ]
   ++ map (path: ../../home/pkgs + path) [
     /hyprland/default.nix
@@ -23,6 +23,8 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+
+  custom.currentTheme = "tokyo-night";
   home.packages = with pkgs; [
     neofetch
     htop

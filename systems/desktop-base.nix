@@ -4,8 +4,6 @@
     ../drivers/boot.nix
     ../drivers/audio.nix
     ../home/home-manager.nix
-
-    ../options/themes.nix
   ];
   # Enable networking
   nixpkgs.config.allowUnfree = true;
