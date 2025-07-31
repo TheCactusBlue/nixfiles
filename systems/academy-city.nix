@@ -4,6 +4,7 @@
     ./desktop-base.nix
     ../drivers/nvidia.nix
     ../drivers/rgb.nix
+    ../networking/host-block.nix
 
     # users
     ../users/hayley/hayley.nix
