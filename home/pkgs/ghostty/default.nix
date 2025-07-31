@@ -1,4 +1,10 @@
-{ config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib;
 let
   theme = config.custom.themes.${config.custom.currentTheme};
 in
@@ -8,7 +14,7 @@ in
     settings = {
       window-padding-x = 12;
       window-padding-y = 12;
-      palette = builtins.attrValues (builtins.mapAttrs (name: value: name + "=" + value) theme.ansi);
+      palette = attrValues (mapAttrs (name: value: name + "=" + value) theme.ansi);
       background = theme.background;
       foreground = theme.foreground;
       cursor-color = "#c0caf5";
