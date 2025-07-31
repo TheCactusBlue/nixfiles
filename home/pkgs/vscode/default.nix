@@ -7,6 +7,7 @@
         # Tooling
         ms-azuretools.vscode-docker
         bbenoist.nix
+        jnoortheen.nix-ide
 
         # Javascript
         esbenp.prettier-vscode
@@ -26,6 +27,26 @@
         enkia.tokyo-night
         pkief.material-icon-theme
       ];
+
+      userSettings = {
+        "workbench.iconTheme" = "material-icon-theme";
+        "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
+        "editor.fontSize" = 15;
+        "editor.lineHeight" = 1.3;
+        "editor.fontWeight" = "normal";
+        "editor.fontLigatures" = true;
+        "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
+        "terminal.integrated.fontLigatures.enabled" = true;
+        "terminal.integrated.fontSize" = 15;
+        "terminal.integrated.lineHeight" = 0.9;
+        "files.autoSave" = "onFocusChange";
+        "files.autoSaveDelay" = 0;
+        "editor.formatOnSave" = true;
+        "[css]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        };
+        "workbench.colorTheme" = "Tokyo Night";
+      };
     };
   };
 }
