@@ -10,9 +10,6 @@
 
     ../fonts.nix
     ../locale.nix
-
-    # move later
-    ../games/hoyoverse.nix
   ];
   networking.hostName = "academy-city"; # Define your hostname.
   time.timeZone = "America/Los_Angeles";

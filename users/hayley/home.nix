@@ -20,6 +20,7 @@
 
     # gaming
     /minecraft/default.nix
+    /hoyoverse/default.nix
   ];
 
   custom = {
