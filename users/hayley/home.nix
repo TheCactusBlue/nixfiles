@@ -18,6 +18,9 @@
     /vscode/default.nix
     /claude-code/default.nix
 
+    # communication
+    /discord/default.nix
+
     # gaming
     /minecraft/default.nix
     /hoyoverse/default.nix
@@ -35,18 +38,12 @@
     cava
     zenith-nvidia
     pciutils
-    discord
     pinta
   ];
 
   programs.git = {
-    enable = true;
     userName = "TheCactusBlue";
     userEmail = "thecactusblue@gmail.com";
-    extraConfig = {
-      push.AutoSetupRemote = true;
-      init.defaultBranch = "main";
-    };
   };
 
   programs.hyfetch = {
