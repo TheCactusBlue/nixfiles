@@ -12,7 +12,6 @@
     ../locale.nix
 
     # move later
-    ../programming/claude-code.nix
     ../games/hoyoverse.nix
   ];
   networking.hostName = "academy-city"; # Define your hostname.

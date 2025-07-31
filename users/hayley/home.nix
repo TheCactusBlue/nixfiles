@@ -13,6 +13,7 @@
 
     # development tools
     /vscode/default.nix
+    /claude-code/default.nix
 
     # gaming
     /minecraft/default.nix
