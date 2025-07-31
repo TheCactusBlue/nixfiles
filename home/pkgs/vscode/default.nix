@@ -39,7 +39,7 @@
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 15;
         "terminal.integrated.lineHeight" = 0.9;
-        "files.autoSave" = "onFocusChange";
+        "files.autoSave" = "afterDelay";
         "files.autoSaveDelay" = 0;
         "editor.formatOnSave" = true;
         "[css]" = {
