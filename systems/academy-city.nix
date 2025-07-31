@@ -18,5 +18,5 @@
   programs.hyprland.enable = true; # Need for global hyprland
   programs.firefox.enable = true;
   services.hardware.openrgb.enable = true;
-  services.hardware.openrgb.package = pkgs.callPackage ../pkgs/openrgb/package.nix { };
+  # services.hardware.openrgb.package = pkgs.callPackage ../pkgs/openrgb/package.nix { };
 }
