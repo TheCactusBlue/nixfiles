@@ -2,21 +2,30 @@
 {
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      # Tooling
-      ms-azuretools.vscode-docker
-      bbenoist.nix
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        # Tooling
+        ms-azuretools.vscode-docker
+        bbenoist.nix
 
-      # Rust
-      rust-lang.rust-analyzer
-      tamasfe.even-better-toml
+        # Javascript
+        esbenp.prettier-vscode
 
-      # AI Assistance
-      anthropic.claude-code
+        # Rust
+        rust-lang.rust-analyzer
+        tamasfe.even-better-toml
 
-      # QoL
-      formulahendry.auto-close-tag
-      formulahendry.auto-rename-tag
-    ];
+        # AI Assistance
+        # anthropic.claude-code
+
+        # QoL
+        formulahendry.auto-close-tag
+        formulahendry.auto-rename-tag
+
+        # Theming
+        enkia.tokyo-night
+        pkief.material-icon-theme
+      ];
+    };
   };
 }

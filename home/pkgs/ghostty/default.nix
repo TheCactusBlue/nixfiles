@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
 let
   theme = import ../../../themes/tokyo-night.nix;
+in
 {
   programs.ghostty = {
     enable = true;
     settings = {
       window-padding-x = 12;
       window-padding-y = 12;
-      palette = attrValues (mapattrs (name: value: name + "=" + value) theme.ansi);
+      palette = builtins.attrValues (builtins.mapAttrs (name: value: name + "=" + value) theme.ansi);
       background = theme.background;
       foreground = theme.foreground;
       cursor-color = "#c0caf5";
