@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../home/options/themes.nix
+    ../../home/home-base.nix
   ]
   ++ map (path: ../../home/pkgs + path) [
     /hyprland/default.nix
@@ -22,7 +22,6 @@
     /minecraft/default.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
   custom = {
     currentTheme = "tokyo-night";
   };
