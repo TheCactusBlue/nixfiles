@@ -23,8 +23,10 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  custom = {
+    currentTheme = "tokyo-night";
+  };
 
-  custom.currentTheme = "tokyo-night";
   home.packages = with pkgs; [
     neofetch
     htop

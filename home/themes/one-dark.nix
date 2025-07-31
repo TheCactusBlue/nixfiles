@@ -1,5 +1,7 @@
+{ pkgs, ... }:
 {
   vscode = "One Dark Pro";
+  vscodePkg = pkgs.vscode-extensions.zhuangtongfa.material-theme;
   background = "#282c34";
   foreground = "#abb2bf";
   ansi = {

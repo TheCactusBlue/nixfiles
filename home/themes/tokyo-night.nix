@@ -1,5 +1,7 @@
+{ pkgs, ... }:
 {
   vscode = "Tokyo Night";
+  vscodePkg = pkgs.vscode-extensions.enkia.tokyo-night;
   background = "#1a1b26";
   foreground = "#c0caf5";
   ansi = {

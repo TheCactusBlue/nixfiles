@@ -1,33 +1,45 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  # Get all theme packages that are not null
+  themePackages = lib.filter (pkg: pkg != null) (
+    lib.attrsets.mapAttrsToList (_: theme: theme.vscodePkg or null) config.custom.themes
+  );
+in
 {
   programs.vscode = {
     enable = true;
     profiles.default = {
-      extensions = with pkgs.vscode-extensions; [
-        # Tooling
-        ms-azuretools.vscode-docker
-        bbenoist.nix
-        jnoortheen.nix-ide
+      extensions =
+        with pkgs.vscode-extensions;
+        [
+          # Tooling
+          ms-azuretools.vscode-docker
+          bbenoist.nix
+          jnoortheen.nix-ide
 
-        # Javascript
-        esbenp.prettier-vscode
+          # Javascript
+          esbenp.prettier-vscode
 
-        # Rust
-        rust-lang.rust-analyzer
-        tamasfe.even-better-toml
+          # Rust
+          rust-lang.rust-analyzer
+          tamasfe.even-better-toml
 
-        # AI Assistance
-        # anthropic.claude-code
+          # AI Assistance
+          # anthropic.claude-code
 
-        # QoL
-        formulahendry.auto-close-tag
-        formulahendry.auto-rename-tag
+          # QoL
+          formulahendry.auto-close-tag
+          formulahendry.auto-rename-tag
 
-        # Theming
-        enkia.tokyo-night
-        zhuangtongfa.material-theme # This is actually One Dark Pro
-        pkief.material-icon-theme
-      ];
+          # Icons
+          pkief.material-icon-theme
+        ]
+        ++ themePackages;
 
       userSettings = {
         "workbench.iconTheme" = "material-icon-theme";

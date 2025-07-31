@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 with lib;
 
@@ -36,6 +36,13 @@ with lib;
             example = "Tokyo Night";
           };
 
+          vscodePkg = mkOption {
+            type = types.nullOr types.package;
+            description = "VSCode extension package to install for this theme";
+            default = null;
+            example = "pkgs.vscode-extensions.enkia.tokyo-night";
+          };
+
           foreground = mkOption {
             type = types.str;
             description = "Default foreground color";
@@ -52,8 +59,8 @@ with lib;
     );
     description = "Theme definitions with ANSI colors, VSCode theme, and foreground/background colors";
     default = {
-      one-dark = import ../themes/one-dark.nix;
-      tokyo-night = import ../themes/tokyo-night.nix;
+      one-dark = import ../themes/one-dark.nix { inherit pkgs; };
+      tokyo-night = import ../themes/tokyo-night.nix { inherit pkgs; };
     };
   };
 
