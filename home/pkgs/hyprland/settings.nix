@@ -181,16 +181,27 @@ with lib;
       "$mainMod, up, movefocus, u"
       "$mainMod, down, movefocus, d"
     ]
-    ++ lists.flatten (
-      genList (x: [
-        "$mainMod, ${toString (x + 1)}, workspace, ${toString (x + 1)}"
-        "$mainMod SHIFT, ${toString (x + 1)}, movetoworkspace, ${toString (x + 1)}"
-      ]) 9
+    ++ (
+      let
+        workspaces =
+          (genList (x: {
+            name = "${toString (x + 1)}";
+            keybind = "${toString (x + 1)}";
+          }) 9)
+          ++ [
+            {
+              name = "0";
+              keybind = "10";
+            }
+          ];
+      in
+      lists.flatten (
+        map (x: [
+          "$mainMod, ${x.name}, workspace, ${x.keybind}"
+          "$mainMod SHIFT, ${x.name}, movetoworkspace, ${x.keybind}"
+        ]) workspaces
+      )
     )
-    ++ [
-      "$mainMod, 0, workspace, 10"
-      "$mainMod SHIFT, 0, movetoworkspace, 10"
-    ]
     ++ [
       # Special workspace
       "$mainMod, S, togglespecialworkspace, magic"
