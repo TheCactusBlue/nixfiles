@@ -2,11 +2,9 @@
 {
   imports = [
     ./gtk-fix.nix
+    ./settings.nix
   ];
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings = import ./settings.nix;
-  };
+  wayland.windowManager.hyprland.enable = true;
 
   services.hypridle = {
     enable = true;
@@ -23,14 +21,16 @@
 
   services.hyprpaper = {
     enable = true;
-    settings = {
-      preload = [
-        "/home/hayley/Pictures/Wallpapers/misaka_1.png"
-      ];
-      wallpaper = [
-        "DP-5,/home/hayley/Pictures/Wallpapers/misaka_1.png"
-      ];
-    };
+    settings =
+      let
+        wallpaper = "/home/hayley/Pictures/Wallpapers/misaka_1.png";
+      in
+      {
+        preload = [ wallpaper ];
+        wallpaper = [
+          "DP-5,${wallpaper}"
+        ];
+      };
   };
 
   services.hyprpolkitagent.enable = true;
