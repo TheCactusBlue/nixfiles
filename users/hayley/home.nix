@@ -24,6 +24,9 @@
     # gaming
     /minecraft/default.nix
     /hoyoverse/default.nix
+
+    # ricing
+    /neofetch/default.nix
   ];
 
   custom = {
@@ -31,7 +34,6 @@
   };
 
   home.packages = with pkgs; [
-    neofetch
     htop
     cmatrix
     cbonsai
@@ -44,11 +46,6 @@
   programs.git = {
     userName = "TheCactusBlue";
     userEmail = "thecactusblue@gmail.com";
-  };
-
-  programs.hyfetch = {
-    enable = true;
-    settings = { };
   };
 
   home.stateVersion = "25.05";

@@ -9,9 +9,7 @@ with lib;
 {
   wayland.windowManager.hyprland.settings = {
     # Monitor configuration
-    monitor = osConfig.desktop.hyprland.monitors ++ [
-      ",preferred,auto,auto"
-    ];
+    monitor = osConfig.desktop.hyprland.monitors ++ [ ",preferred,auto,auto" ];
 
     # Program variables
     "$terminal" = "ghostty";
