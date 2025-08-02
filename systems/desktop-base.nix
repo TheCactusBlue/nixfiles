@@ -5,23 +5,25 @@
     ../drivers/audio.nix
     ../home/home-manager.nix
   ];
-  # Enable networking
-  nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+  nixpkgs.config.allowUnfree = true;
+
   networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  services.gvfs.enable = true;
-  services.printing.enable = true;
+  services = {
+    xserver.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    gvfs.enable = true;
+    printing.enable = true;
+    flatpak.enable = true;
+  };
 
   virtualisation.docker.enable = true;
-  services.flatpak.enable = true;
   security.polkit.enable = true;
 
   environment.systemPackages = with pkgs; [
