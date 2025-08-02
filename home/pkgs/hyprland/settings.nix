@@ -2,15 +2,14 @@
   lib,
   config,
   pkgs,
+  osConfig,
   ...
 }:
 with lib;
 {
   wayland.windowManager.hyprland.settings = {
     # Monitor configuration
-    monitor = [
-      "DP-5, 2560x1440@60, 0x0, 1"
-      "DP-4, 2560x682@60, 2560x0, 2, transform, 3"
+    monitor = osConfig.desktop.hyprland.monitors ++ [
       ",preferred,auto,auto"
     ];
 
