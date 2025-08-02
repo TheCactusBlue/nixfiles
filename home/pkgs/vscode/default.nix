@@ -55,10 +55,19 @@ in
         "files.autoSave" = "afterDelay";
         "files.autoSaveDelay" = 0;
         "editor.formatOnSave" = true;
+        "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
+
+        "[typescript]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        };
+
+        "[typescriptreact]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        };
+
         "[css]" = {
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
         };
-        "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
       };
     };
   };
