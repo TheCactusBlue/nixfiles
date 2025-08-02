@@ -42,6 +42,7 @@
     zenith-nvidia
     pciutils
     pinta
+    nur.repos.charmbracelet.crush
   ];
 
   programs.git = {

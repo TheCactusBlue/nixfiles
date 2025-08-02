@@ -25,6 +25,7 @@
       self,
       nixpkgs,
       home-manager,
+      nur,
       aagl-gtk-on-nix,
       ...
     }@inputs:

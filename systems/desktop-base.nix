@@ -1,15 +1,16 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
+    ./base.nix
     ../drivers/boot.nix
     ../drivers/audio.nix
     ../home/home-manager.nix
   ];
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
 
