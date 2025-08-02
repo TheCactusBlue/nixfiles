@@ -8,13 +8,18 @@ import Hypr from "gi://AstalHyprland";
 const hypr = Hypr.get_default();
 
 function Workspaces() {
-  const workspaces = [...hypr.workspaces].sort((a, b) => a.name.localeCompare(b.name))
+  const workspaces = [...hypr.workspaces].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
   return (
     <box>
       {workspaces.map((x) => (
-        <button $type="start" onClicked={() => {
-          console.log(x.name);
-        }}>
+        <button
+          $type="start"
+          onClicked={() => {
+            console.log(x.name);
+          }}
+        >
           <label label={`${x.id}`} />
         </button>
       ))}
@@ -36,7 +41,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       anchor={TOP | LEFT | RIGHT}
       application={app}
     >
-      <Workspaces/>
+      <Workspaces />
     </window>
   );
 }
