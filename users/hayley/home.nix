@@ -30,6 +30,7 @@
 
     # ricing
     /neofetch/default.nix
+    /ags/default.nix
   ];
 
   programs.obsidian.enable = true;
