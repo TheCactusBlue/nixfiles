@@ -33,6 +33,7 @@
     currentTheme = "tokyo-night";
   };
 
+  programs.firefox.enable = true;
   home.packages = with pkgs; [
     htop
     cmatrix
