@@ -8,7 +8,11 @@
     # symlink to ~/.config/ags
     configDir = ../ags;
     # additional packages and executables to add to gjs's runtime
-    extraPackages = with pkgs; [ ];
+    extraPackages =
+      (with pkgs; [ ])
+      ++ (with inputs.astal.packages.${pkgs.system}; [
+        hyprland
+      ]);
   };
   home.packages = [
     inputs.astal.packages.${pkgs.system}.io
