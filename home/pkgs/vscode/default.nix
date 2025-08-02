@@ -4,6 +4,7 @@
   lib,
   ...
 }:
+with lib;
 let
   # Get all theme packages that are not null
   themePackages = lib.filter (pkg: pkg != null) (
@@ -57,18 +58,22 @@ in
         "editor.formatOnSave" = true;
         "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
 
-        "[typescript]" = {
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
-        };
-
-        "[typescriptreact]" = {
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
-        };
-
-        "[css]" = {
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
-        };
-      };
+      }
+      // listToAttrs (
+        map
+          (lang: {
+            name = "[${lang}]";
+            value = {
+              "editor.defaultFormatter" = "esbenp.prettier-vscode";
+            };
+          })
+          [
+            "typescript"
+            "typescriptreact"
+            "css"
+          ]
+      );
     };
   };
+
 }
