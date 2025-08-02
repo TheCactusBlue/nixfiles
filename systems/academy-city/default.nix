@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./desktop-base.nix
-    ../drivers/nvidia.nix
-    ../networking/host-block.nix
+    ../desktop-base.nix
+    ../../drivers/nvidia.nix
+    ../../networking/host-block.nix
 
     # users
-    ../users/hayley/hayley.nix
+    ../../users/hayley/hayley.nix
 
-    ../fonts.nix
-    ../locale.nix
+    ../../fonts.nix
+    ../../locale.nix
   ];
   networking.hostName = "academy-city"; # Define your hostname.
   time.timeZone = "America/Los_Angeles";

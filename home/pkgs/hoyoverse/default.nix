@@ -1,8 +1,4 @@
-let
-  aagl-gtk-on-nix = import (
-    builtins.fetchTarball "https://github.com/ezKEa/aagl-gtk-on-nix/archive/main.tar.gz"
-  );
-in
+{ pkgs, inputs, ... }:
 {
-  home.packages = [ aagl-gtk-on-nix.an-anime-game-launcher ];
+  home.packages = [ inputs.aagl-gtk-on-nix.packages.${pkgs.system}.an-anime-game-launcher ];
 }

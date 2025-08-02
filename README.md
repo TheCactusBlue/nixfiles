@@ -12,7 +12,22 @@ Personal NixOS configuration. I'm pretty new to NixOS, so this is probably all w
 
 ## How to use
 
-modify your /etc/nixos/configuration.nix to look like this:
+This configuration now uses Nix flakes.
+
+### Using the flake
+
+1. Clone this repository
+2. Build and switch to the configuration:
+
+```sh
+sudo nixos-rebuild switch --flake .#academy-city
+```
+
+**Note:** The hardware configuration is included in this repository. If you're using this on a different machine, you may need to update `hardware-configuration.nix` with your system's specific hardware settings.
+
+### Traditional method (deprecated)
+
+Alternatively, modify your /etc/nixos/configuration.nix to look like this:
 
 ```nix
 { config, pkgs, ... }:
