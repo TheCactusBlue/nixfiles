@@ -8,6 +8,9 @@
     /waybar/default.nix
     /ghostty/default.nix
 
+    # general
+    /firefox/default.nix
+
     # development
     /zsh/default.nix
     /git/default.nix
@@ -33,7 +36,6 @@
     currentTheme = "tokyo-night";
   };
 
-  programs.firefox.enable = true;
   home.packages = with pkgs; [
     htop
     cmatrix
