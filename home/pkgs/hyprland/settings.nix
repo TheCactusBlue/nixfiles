@@ -36,7 +36,8 @@ with lib;
     general = {
       gaps_in = 5;
       gaps_out = 20;
-      border_size = 2;
+      # border_size = 2;
+      border_size = 0;
       "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
       "col.inactive_border" = "rgba(59595900)";
       resize_on_border = false;
@@ -60,7 +61,7 @@ with lib;
 
       blur = {
         enabled = true;
-        size = 3;
+        size = 5;
         passes = 1;
         vibrancy = 0.1696;
       };
@@ -113,8 +114,9 @@ with lib;
       "suppressevent maximize, class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
       "opacity 0.99 0.9, class:com.mitchellh.ghostty"
-      "opacity 1 0.96, class:Code"
+      "opacity 0.96 0.9, class:Code"
       "opacity 0.96 0.9, class:discord"
+      "opacity 0.96 0.9, class:obsidian"
       "float, class:org.pulseaudio.pavucontrol"
       "fullscreen, class:genshinimpact.exe"
     ];
