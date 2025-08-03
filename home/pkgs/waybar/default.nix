@@ -40,6 +40,19 @@
           };
         };
 
+        "hyprland/workspaces" = {
+          "format" = "{icon}  {windows} ";
+          "format-window-separator" = " ";
+          "window-rewrite-default" = "";
+          "window-rewrite" = {
+            "class<firefox>" = "";
+            "class<discord>" = "";
+            "class<obsidian>" = "󰹕";
+            # "class<com.mitchellh.ghostty>" = "";
+            "code" = "󰨞";
+          };
+        };
+
         "hyprland/mode" = {
           format = "<span style=\"italic\">{}</span>";
         };
