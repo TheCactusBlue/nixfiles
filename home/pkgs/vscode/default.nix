@@ -25,6 +25,9 @@ in
 
           # Javascript
           esbenp.prettier-vscode
+          dbaeumer.vscode-eslint
+          yoavbls.pretty-ts-errors
+          unifiedjs.vscode-mdx
 
           # Rust
           rust-lang.rust-analyzer
