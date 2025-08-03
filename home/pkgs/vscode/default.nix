@@ -70,6 +70,7 @@ in
             name = "[${lang}]";
             value = {
               "editor.defaultFormatter" = "esbenp.prettier-vscode";
+              "editor.tabSize" = 2;
             };
           })
           [
