@@ -28,6 +28,7 @@ in
           dbaeumer.vscode-eslint
           yoavbls.pretty-ts-errors
           unifiedjs.vscode-mdx
+          styled-components.vscode-styled-components
 
           # Rust
           rust-lang.rust-analyzer
@@ -52,6 +53,7 @@ in
         "editor.lineHeight" = 1.3;
         "editor.fontWeight" = "normal";
         "editor.fontLigatures" = true;
+        "editor.wordWrap" = "on";
         "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
         "terminal.integrated.fontLigatures.enabled" = true;
         "terminal.integrated.fontSize" = 15;
