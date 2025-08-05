@@ -23,12 +23,13 @@ in
           bbenoist.nix
           jnoortheen.nix-ide
 
-          # Javascript
+          # Javascript, TypeScript and CSS
           esbenp.prettier-vscode
           dbaeumer.vscode-eslint
           yoavbls.pretty-ts-errors
           unifiedjs.vscode-mdx
           styled-components.vscode-styled-components
+          bradlc.vscode-tailwindcss
 
           # Rust
           rust-lang.rust-analyzer
@@ -62,7 +63,8 @@ in
         "files.autoSaveDelay" = 0;
         "editor.formatOnSave" = true;
         "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
-
+        "workbench.editor.empty.hint" = "hidden";
+        "terminal.integrated.initialHint" = false;
       }
       // listToAttrs (
         map
