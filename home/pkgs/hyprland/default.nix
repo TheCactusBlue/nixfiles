@@ -36,6 +36,7 @@
   services.hyprpolkitagent.enable = true;
 
   home.packages = with pkgs; [
+    hyprland-qt-support
     wofi
     pavucontrol
     hyprshot
