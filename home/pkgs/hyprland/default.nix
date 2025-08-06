@@ -18,6 +18,9 @@
       ];
     };
   };
+  programs.hyprlock = {
+    enable = true;
+  };
 
   services.hyprpaper = {
     enable = true;

@@ -29,5 +29,6 @@
 
   programs.zsh.enable = true;
   programs.hyprland.enable = true; # Need for global hyprland
+  security.pam.services.hyprlock = { };
   services.hardware.openrgb.enable = true;
 }
