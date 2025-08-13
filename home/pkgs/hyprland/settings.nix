@@ -242,5 +242,6 @@ with lib;
       ", XF86AudioPlay, exec, playerctl play-pause"
       ", XF86AudioPrev, exec, playerctl previous"
     ];
+    xwayland.force_zero_scaling = true;
   };
 }

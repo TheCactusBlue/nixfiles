@@ -8,7 +8,7 @@ with lib;
     default = [ ];
     example = [
       "DP-5, 3840x2160@60, 0x0, 1"
-      "DP-4, 2560x682@60, 2560x0, 2, transform, 3"
+      "DP-4, 2560x682@60, 3840x0, 2, transform, 3"
     ];
   };
 }
