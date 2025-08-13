@@ -7,7 +7,7 @@ with lib;
     description = "List of system monitor configs for hyprland";
     default = [ ];
     example = [
-      "DP-5, 2560x1440@60, 0x0, 1"
+      "DP-5, 3840x2160@60, 0x0, 1"
       "DP-4, 2560x682@60, 2560x0, 2, transform, 3"
     ];
   };
