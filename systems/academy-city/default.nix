@@ -34,4 +34,5 @@
   programs.hyprland.enable = true; # Need for global hyprland
   security.pam.services.hyprlock = { };
   services.hardware.openrgb.enable = true;
+  services.trezord.enable = true;
 }
