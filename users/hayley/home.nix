@@ -47,6 +47,7 @@
     zenith-nvidia
     pciutils
     pinta
+    trezor-suite
     nur.repos.charmbracelet.crush
   ];
 

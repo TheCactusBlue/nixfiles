@@ -134,12 +134,18 @@
     enable = true;
     settings =
       let
-        wallpaper = "/home/hayley/Pictures/Wallpapers/misaka_1.png";
+        wallpaper_left = "/home/hayley/Pictures/Wallpapers/wp-upscaled-left.png";
+        wallpaper_right = "/home/hayley/Pictures/Wallpapers/wp-upscaled-right.png";
+
       in
       {
-        preload = [ wallpaper ];
+        preload = [
+          wallpaper_left
+          wallpaper_right
+        ];
         wallpaper = [
-          "DP-5,${wallpaper}"
+          "DP-2,${wallpaper_left}"
+          "DP-5,${wallpaper_right}"
         ];
       };
   };
