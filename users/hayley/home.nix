@@ -49,6 +49,7 @@
     pinta
     trezor-suite
     nur.repos.charmbracelet.crush
+    moon
   ];
 
   programs.git = {
