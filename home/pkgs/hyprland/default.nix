@@ -156,6 +156,7 @@
     hyprland-qt-support
     wofi
     pavucontrol
+    pwvucontrol
     hyprshot
     nautilus
     brightnessctl
