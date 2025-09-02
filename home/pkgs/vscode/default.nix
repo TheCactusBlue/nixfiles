@@ -64,6 +64,7 @@ in
         "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
         "workbench.editor.empty.hint" = "hidden";
         "terminal.integrated.initialHint" = false;
+        "rust-analyzer.inlayHints.typeHints.enable" = false;
       }
       // listToAttrs (
         map
