@@ -50,6 +50,7 @@
     trezor-suite
     nur.repos.charmbracelet.crush
     moon
+    wineWowPackages.stable
   ];
 
   programs.git = {
