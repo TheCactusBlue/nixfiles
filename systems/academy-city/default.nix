@@ -36,8 +36,8 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-  environment.systemPackages = [
-    pkgs.protontricks
+  environment.systemPackages = with pkgs; [
+    protontricks
   ];
 
   programs.zsh.enable = true;
@@ -45,4 +45,24 @@
   security.pam.services.hyprlock = { };
   services.hardware.openrgb.enable = true;
   services.trezord.enable = true;
+
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+
+    # optional Nvidia hardware acceleration
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      obs-gstreamer
+      obs-vkcapture
+    ];
+  };
 }
