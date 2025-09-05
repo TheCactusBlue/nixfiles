@@ -119,6 +119,7 @@ with lib;
       "opacity 0.96 0.9, class:obsidian"
       "float, class:org.pulseaudio.pavucontrol"
       "fullscreen, class:genshinimpact.exe"
+      "tile, class:steam_app_2079120" # warudo
     ];
 
     # Layout settings

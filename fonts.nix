@@ -2,6 +2,7 @@
 {
   # Fonts
   fonts.packages = with pkgs; [
+    corefonts
     roboto
     open-sans
     noto-fonts
