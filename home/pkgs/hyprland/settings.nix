@@ -120,6 +120,7 @@ with lib;
       "float, class:org.pulseaudio.pavucontrol"
       "fullscreen, class:genshinimpact.exe"
       "tile, class:steam_app_2079120" # warudo
+      "tile, initialTitle:^(VSeeFace)$" # warudo
     ];
 
     # Layout settings
