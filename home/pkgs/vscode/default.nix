@@ -22,6 +22,7 @@ in
           ms-azuretools.vscode-docker
           bbenoist.nix
           jnoortheen.nix-ide
+          vscode-extensions.anthropic.claude-code
 
           # Javascript, TypeScript and CSS
           esbenp.prettier-vscode
