@@ -31,6 +31,7 @@ in
           unifiedjs.vscode-mdx
           styled-components.vscode-styled-components
           bradlc.vscode-tailwindcss
+          svelte.svelte-vscode
 
           # Rust
           rust-lang.rust-analyzer
