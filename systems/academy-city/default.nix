@@ -22,6 +22,12 @@
   networking.hostName = "academy-city"; # Define your hostname.
   time.timeZone = "America/Los_Angeles";
 
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    useOSProber = true;
+  };
+
   desktop.hyprland.monitors = [
     "DP-2, 2560x1440@60, 0x0, 1"
     "DP-5, 3840x2160@60, 2560x0, 1.5"

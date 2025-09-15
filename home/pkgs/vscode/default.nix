@@ -78,9 +78,13 @@ in
             };
           })
           [
+            "javascript"
+            "javascriptreact"
             "typescript"
             "typescriptreact"
+            "html"
             "css"
+            "svelte"
           ]
       );
     };
