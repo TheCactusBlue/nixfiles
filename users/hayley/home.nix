@@ -51,6 +51,7 @@
     nur.repos.charmbracelet.crush
     moon
     wineWowPackages.stable
+    gparted
   ];
 
   programs.git = {
