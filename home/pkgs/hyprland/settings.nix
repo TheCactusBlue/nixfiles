@@ -194,19 +194,19 @@ with lib;
       in
       lists.flatten (
         map (x: [
-          "$mainMod, ${x.name}, workspace, ${x.keybind}"
-          "$mainMod SHIFT, ${x.name}, movetoworkspace, ${x.keybind}"
+          "$mainMod, ${x.name}, split:workspace, ${x.keybind}"
+          "$mainMod SHIFT, ${x.name}, split:movetoworkspace, ${x.keybind}"
         ]) workspaces
       )
     )
     ++ [
       # Special workspace
       "$mainMod, S, togglespecialworkspace, magic"
-      "$mainMod SHIFT, S, movetoworkspace, special:magic"
+      "$mainMod SHIFT, S, split:movetoworkspace, special:magic"
 
       # Mouse workspace switching
-      "$mainMod, mouse_down, workspace, e+1"
-      "$mainMod, mouse_up, workspace, e-1"
+      "$mainMod, mouse_down, split:workspace, e+1"
+      "$mainMod, mouse_up, split:workspace, e-1"
 
       # Screenshots
       "$mainMod, PRINT, exec, hyprshot -m window"
