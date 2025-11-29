@@ -154,11 +154,6 @@ with lib;
       };
     };
 
-    # Gestures
-    gestures = {
-      workspace_swipe = false;
-    };
-
     # Device settings
     device = {
       name = "epic-mouse-v1";

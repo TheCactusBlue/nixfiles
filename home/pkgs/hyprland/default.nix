@@ -1,10 +1,18 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./gtk-fix.nix
     ./settings.nix
   ];
-  wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    plugins = [ pkgs.hyprlandPlugins.hyprsplit ];
+  };
 
   services.hypridle = {
     enable = true;
