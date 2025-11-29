@@ -144,7 +144,7 @@
           wallpaper_right
         ];
         wallpaper = [
-          "DP-2,${wallpaper_left}"
+          "DP-4,${wallpaper_left}"
           "DP-5,${wallpaper_right}"
         ];
       };
