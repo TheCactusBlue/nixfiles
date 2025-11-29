@@ -29,6 +29,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.astal.follows = "astal";
     };
+
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs =
