@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     aagl-gtk-on-nix = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +53,9 @@
           modules = [
             ./systems/academy-city/hardware-configuration.nix
             ./systems/academy-city/default.nix
+            {
+              nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
+            }
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
