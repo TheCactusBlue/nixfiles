@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       push.AutoSetupRemote = true;
       init.defaultBranch = "main";
     };

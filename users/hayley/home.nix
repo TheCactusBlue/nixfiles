@@ -54,9 +54,9 @@
     gparted
   ];
 
-  programs.git = {
-    userName = "TheCactusBlue";
-    userEmail = "thecactusblue@gmail.com";
+  programs.git.settings.user = {
+    name = "TheCactusBlue";
+    email = "thecactusblue@gmail.com";
   };
 
   home.stateVersion = "25.05";
