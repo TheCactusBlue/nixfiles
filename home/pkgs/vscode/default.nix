@@ -51,20 +51,21 @@ in
       userSettings = {
         "workbench.iconTheme" = "material-icon-theme";
         "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
-        "editor.fontSize" = 15;
+        "editor.fontSize" = 14;
         "editor.lineHeight" = 1.3;
         "editor.fontWeight" = "normal";
         "editor.fontLigatures" = true;
         "editor.wordWrap" = "on";
         "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
         "terminal.integrated.fontLigatures.enabled" = true;
-        "terminal.integrated.fontSize" = 15;
+        "terminal.integrated.fontSize" = 14;
         "terminal.integrated.lineHeight" = 0.9;
         "files.autoSave" = "onFocusChange";
         "editor.formatOnSave" = true;
         "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
         "workbench.editor.empty.hint" = "hidden";
         "terminal.integrated.initialHint" = false;
+        "terminal.integrated.suggest.enabled" = false;
         "editor.inlayHints.enabled" = "offUnlessPressed";
       }
       // listToAttrs (

@@ -33,13 +33,12 @@
     /ags/default.nix
   ];
 
-  programs.obsidian.enable = true;
-
   custom = {
     currentTheme = "tokyo-night";
   };
 
   home.packages = with pkgs; [
+    obsidian
     htop
     cmatrix
     cbonsai
