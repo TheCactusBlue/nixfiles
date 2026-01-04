@@ -53,7 +53,7 @@ in
           fontFamily = "JetBrainsMono Nerd Font Mono";
           fontSize = 14;
         in
-        foldl' attrsets.recursiveUpdate { } [
+        foldl' recursiveUpdate
           {
             "workbench.iconTheme" = "material-icon-theme";
             "editor.fontFamily" = fontFamily;
@@ -74,26 +74,28 @@ in
             "terminal.integrated.suggest.enabled" = false;
             "editor.inlayHints.enabled" = "offUnlessPressed";
           }
-          (listToAttrs (
-            map
-              (lang: {
-                name = "[${lang}]";
-                value = {
-                  "editor.defaultFormatter" = "esbenp.prettier-vscode";
-                  "editor.tabSize" = 2;
-                };
-              })
-              [
-                "javascript"
-                "javascriptreact"
-                "typescript"
-                "typescriptreact"
-                "html"
-                "css"
-                "svelte"
-              ]
-          ))
-        ];
+          [
+
+            (listToAttrs (
+              map
+                (lang: {
+                  name = "[${lang}]";
+                  value = {
+                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+                    "editor.tabSize" = 2;
+                  };
+                })
+                [
+                  "javascript"
+                  "javascriptreact"
+                  "typescript"
+                  "typescriptreact"
+                  "html"
+                  "css"
+                  "svelte"
+                ]
+            ))
+          ];
 
       keybindings = [
         {
