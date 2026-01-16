@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ../../home/home-base.nix
@@ -51,6 +51,9 @@
     moon
     wineWowPackages.stable
     gparted
+    tor
+    monero-gui
+    inputs.hytale-launcher.packages.${pkgs.system}.default
   ];
 
   programs.git.settings.user = {

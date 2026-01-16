@@ -35,6 +35,7 @@
       inputs.astal.follows = "astal";
     };
 
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
     claude-code.url = "github:sadjow/claude-code-nix";
   };
 

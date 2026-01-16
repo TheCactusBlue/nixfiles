@@ -29,6 +29,9 @@
     useOSProber = true;
   };
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   desktop.hyprland.monitors = [
     "DP-4, 2560x1440@60, 0x0, 1"
     "DP-5, 3840x2160@60, 2560x0, 1.5"

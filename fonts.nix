@@ -15,5 +15,6 @@
     dina-font
     proggyfonts
     nerd-fonts.jetbrains-mono
+    monaspace
   ];
 }
