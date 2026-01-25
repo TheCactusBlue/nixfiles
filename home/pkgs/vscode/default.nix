@@ -66,7 +66,8 @@ in
             "terminal.integrated.fontLigatures.enabled" = true;
             "terminal.integrated.fontSize" = fontSize;
             "terminal.integrated.lineHeight" = 0.9;
-            "files.autoSave" = "onFocusChange";
+            "files.autoSave" = "afterDelay";
+            "files.autoSaveDelay" = 500;
             "editor.formatOnSave" = true;
             "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
             "workbench.editor.empty.hint" = "hidden";
@@ -93,6 +94,8 @@ in
                   "html"
                   "css"
                   "svelte"
+                  "json"
+                  "jsonc"
                 ]
             ))
           ];

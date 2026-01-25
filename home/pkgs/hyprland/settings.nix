@@ -107,20 +107,20 @@ with lib;
 
     # Window rules
     windowrule = [
-      "bordersize 0, floating:0, onworkspace:w[tv1]"
-      "rounding 0, floating:0, onworkspace:w[tv1]"
-      "bordersize 0, floating:0, onworkspace:f[1]"
-      "rounding 0, floating:0, onworkspace:f[1]"
-      "suppressevent maximize, class:.*"
-      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      "opacity 0.99 0.9, class:com.mitchellh.ghostty"
-      "opacity 0.96 0.9, class:Code"
-      "opacity 0.96 0.9, class:discord"
-      "opacity 0.96 0.9, class:obsidian"
-      "float, class:org.pulseaudio.pavucontrol"
-      "fullscreen, class:genshinimpact.exe"
-      "tile, class:steam_app_2079120" # warudo
-      "tile, initialTitle:^(VSeeFace)$" # warudo
+      "border_size 0, match:float false, match:workspace w[tv1]"
+      "rounding 0, match:float false, match:workspace w[tv1]"
+      "border_size 0, match:float false, match:workspace f[1]"
+      "rounding 0, match:float false, match:workspace f[1]"
+      "suppress_event maximize, match:class .*"
+      "no_initial_focus on, match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false"
+      "opacity 0.99 0.9, match:class com.mitchellh.ghostty"
+      "opacity 0.96 0.9, match:class Code"
+      "opacity 0.96 0.9, match:class discord"
+      "opacity 0.96 0.9, match:class obsidian"
+      "float on, match:class org.pulseaudio.pavucontrol"
+      "fullscreen on, match:class genshinimpact.exe"
+      "tile on, match:class steam_app_2079120" # warudo
+      "tile on, match:title ^(VSeeFace)$" # warudo
     ];
 
     # Layout settings
