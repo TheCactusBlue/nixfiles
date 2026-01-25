@@ -147,13 +147,16 @@
 
       in
       {
-        preload = [
-          wallpaper_left
-          wallpaper_right
-        ];
+
         wallpaper = [
-          "DP-4,${wallpaper_left}"
-          "DP-5,${wallpaper_right}"
+          {
+            monitor = "DP-4";
+            path = wallpaper_left;
+          }
+          {
+            monitor = "DP-5";
+            path = wallpaper_right;
+          }
         ];
       };
   };

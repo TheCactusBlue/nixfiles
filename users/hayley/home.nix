@@ -40,7 +40,7 @@
   home.packages = with pkgs; [
     obsidian
     htop
-    openrgb
+    # openrgb
     cmatrix
     cbonsai
     cava

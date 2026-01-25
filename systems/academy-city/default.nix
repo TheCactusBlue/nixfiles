@@ -53,7 +53,7 @@
   programs.zsh.enable = true;
   programs.hyprland.enable = true; # Need for global hyprland
   security.pam.services.hyprlock = { };
-  services.hardware.openrgb.enable = true;
+  # services.hardware.openrgb.enable = true;
   services.trezord.enable = true;
 
   programs.obs-studio = {
