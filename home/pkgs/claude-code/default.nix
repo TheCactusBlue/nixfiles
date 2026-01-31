@@ -48,10 +48,10 @@
         "docs.anthropic.com"
       ];
 
-      sandbox = {
-        enabled = true;
-        autoAllowBashIfSandboxed = true;
-      };
+      # sandbox = {
+      #   enabled = true;
+      #   autoAllowBashIfSandboxed = true;
+      # };
     };
 
   };
