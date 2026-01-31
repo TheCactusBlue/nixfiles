@@ -6,7 +6,7 @@
       enable = true;
       plugins = [
         "git"
-        "direnv"
+        "docker"
       ];
       theme = "robbyrussell";
     };
