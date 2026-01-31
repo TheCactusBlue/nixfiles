@@ -14,6 +14,7 @@
     # development
     /zsh/default.nix
     /git/default.nix
+    /direnv/default.nix
     /nodejs/default.nix
     /rust/default.nix
 
