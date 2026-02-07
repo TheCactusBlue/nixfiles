@@ -24,5 +24,12 @@
         };
       }
     ];
+
+    initExtra = ''
+      # Show nix-shell indicator in prompt
+      if [[ -n "$IN_NIX_SHELL" ]]; then
+        PROMPT="%{$fg[cyan]%}❄ %{$reset_color%} $PROMPT"
+      fi
+    '';
   };
 }

@@ -9,9 +9,7 @@
   programs.claude-code = {
     enable = true;
     settings = {
-      model = "opus";
-
-      allow = [
+      permissions.allow = [
         "WebSearch"
       ]
       ++ map (cmd: "Bash(${cmd})") [
@@ -47,6 +45,12 @@
         "anthropic.com"
         "docs.anthropic.com"
       ];
+
+      statusLine = {
+        command = "input=$(cat); echo \"[$(echo \"$input\" | jq -r '.model.display_name')] 📁 $(basename \"$(echo \"$input\" | jq -r '.workspace.current_dir')\")\"";
+        padding = 0;
+        type = "command";
+      };
 
       # sandbox = {
       #   enabled = true;

@@ -18,6 +18,7 @@ in
       extensions =
         with pkgs.vscode-extensions;
         [
+          arrterian.nix-env-selector
           # Tooling
           ms-azuretools.vscode-docker
           bbenoist.nix

@@ -41,6 +41,7 @@
   home.packages = with pkgs; [
     obsidian
     htop
+    jq
     # openrgb
     cmatrix
     cbonsai
@@ -56,6 +57,8 @@
     tor
     monero-gui
     inputs.hytale-launcher.packages.${pkgs.system}.default
+
+    racket
   ];
 
   programs.git.settings.user = {
