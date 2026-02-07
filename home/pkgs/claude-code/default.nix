@@ -47,9 +47,31 @@
       ];
 
       statusLine = {
-        command = "input=$(cat); echo \"[$(echo \"$input\" | jq -r '.model.display_name')] 📁 $(basename \"$(echo \"$input\" | jq -r '.workspace.current_dir')\")\"";
+        command = ''
+          input=$(cat)
+          model=$(echo "$input" | jq -r '.model.display_name')
+          dir=$(basename "$(echo "$input" | jq -r '.workspace.current_dir')")
+          context_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0 | floor')
+          branch=$(echo "$input" | jq -r '.workspace.git.branch // empty')
+
+          # Colors
+          reset='\033[0m'
+          cyan='\033[36m'
+          yellow='\033[33m'
+          green='\033[32m'
+          magenta='\033[35m'
+          dim='\033[2m'
+
+          out="$dim[$reset$cyan$model$reset$dim]$reset 📁 $yellow$dir$reset $dim|$reset 📊 $green$context_pct%$reset"
+          [ -n "$branch" ] && out="$out $dim|$reset 🌿 $magenta$branch$reset"
+          echo -e "$out"
+        '';
         padding = 0;
         type = "command";
+      };
+
+      env = {
+        CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       };
 
       # sandbox = {
