@@ -55,7 +55,10 @@
             ./systems/academy-city/hardware-configuration.nix
             ./systems/academy-city/default.nix
             {
-              nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
+              nixpkgs.overlays = [
+                inputs.rust-overlay.overlays.default
+                inputs.claude-code.overlays.default
+              ];
             }
             home-manager.nixosModules.home-manager
             {

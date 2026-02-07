@@ -5,7 +5,6 @@
   ...
 }:
 {
-  nixpkgs.overlays = [ inputs.claude-code.overlays.default ];
   programs.claude-code = {
     enable = true;
     settings = {
