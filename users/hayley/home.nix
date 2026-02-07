@@ -21,6 +21,7 @@
     # development tools
     /vscode/default.nix
     /claude-code/default.nix
+    /nh/default.nix
 
     # communication
     /discord/default.nix
