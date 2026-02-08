@@ -71,6 +71,7 @@ in
             "files.autoSaveDelay" = 500;
             "editor.formatOnSave" = true;
             "workbench.colorTheme" = config.custom.themes.${config.custom.currentTheme}.vscode;
+            "workbench.panel.defaultLocation" = "top";
             "workbench.editor.empty.hint" = "hidden";
             "terminal.integrated.initialHint" = false;
             "terminal.integrated.suggest.enabled" = false;
