@@ -76,6 +76,7 @@
       sandbox = {
         enabled = true;
         autoAllowBashIfSandboxed = true;
+        network.allowAllUnixSockets = true;
       };
     };
 
