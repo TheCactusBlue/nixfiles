@@ -113,6 +113,12 @@ in
           command = "workbench.action.terminal.paste";
           when = "terminalFocus && terminalProcessSupported";
         }
+        {
+          key = "shift+enter";
+          command = "workbench.action.terminal.sendSequence";
+          args.text = "\\\r\n";
+          when = "terminalFocus";
+        }
       ];
     };
   };
