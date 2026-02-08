@@ -24,6 +24,10 @@
     flatpak.enable = true;
   };
 
+  # Disable systemd's SSH proxy config — it has Nix store ownership that
+  # OpenSSH rejects with "Bad owner or permissions" (systemd 258+).
+  programs.ssh.systemd-ssh-proxy.enable = false;
+
   virtualisation.docker.enable = true;
   security.polkit.enable = true;
 

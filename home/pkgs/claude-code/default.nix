@@ -4,6 +4,17 @@
   inputs,
   ...
 }:
+let
+  allowedDomains = [
+    "docs.rs"
+    "github.com"
+    "raw.githubusercontent.com"
+    "openai.com"
+    "anthropic.com"
+    "docs.anthropic.com"
+    "www.npmjs.com"
+  ];
+in
 {
   programs.claude-code = {
     enable = true;
@@ -36,14 +47,7 @@
         "git push:*"
         "git log:*"
       ]
-      ++ map (site: "WebFetch(domain:${site})") [
-        "docs.rs"
-        "github.com"
-        "raw.githubusercontent.com"
-        "openai.com"
-        "anthropic.com"
-        "docs.anthropic.com"
-      ];
+      ++ map (site: "WebFetch(domain:${site})") allowedDomains;
 
       statusLine = {
         command = ''
@@ -76,7 +80,12 @@
       sandbox = {
         enabled = true;
         autoAllowBashIfSandboxed = true;
-        network.allowAllUnixSockets = true;
+        network.allowedDomains = allowedDomains;
+        excludedCommands = [
+          "git push"
+          "git pull"
+          "git fetch"
+        ];
       };
     };
 
