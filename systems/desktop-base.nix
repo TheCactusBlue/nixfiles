@@ -31,6 +31,8 @@
   virtualisation.docker.enable = true;
   security.polkit.enable = true;
 
+  programs.nix-ld.enable = true;
+
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
     direnv

@@ -17,6 +17,7 @@
     /direnv/default.nix
     /nodejs/default.nix
     /rust/default.nix
+    /python/default.nix
 
     # development tools
     /vscode/default.nix
@@ -59,6 +60,7 @@
     monero-gui
     inputs.hytale-launcher.packages.${pkgs.system}.default
 
+    uv
     racket
   ];
 
