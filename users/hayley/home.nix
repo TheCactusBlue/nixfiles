@@ -59,6 +59,7 @@
     tor
     monero-gui
     inputs.hytale-launcher.packages.${pkgs.system}.default
+    microsoft-edge
 
     uv
     racket
@@ -67,6 +68,17 @@
   programs.git.settings.user = {
     name = "TheCactusBlue";
     email = "thecactusblue@gmail.com";
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
   };
 
   home.stateVersion = "25.05";

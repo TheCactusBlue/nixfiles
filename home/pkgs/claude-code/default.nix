@@ -82,9 +82,8 @@ in
         autoAllowBashIfSandboxed = true;
         network.allowedDomains = allowedDomains;
         excludedCommands = [
-          "git push"
-          "git pull"
-          "git fetch"
+          "git"
+          "docker"
         ];
       };
     };
