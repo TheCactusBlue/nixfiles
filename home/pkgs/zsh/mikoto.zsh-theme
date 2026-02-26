@@ -8,8 +8,12 @@
 _mikoto_segment() {
   local bg=$1 fg=$2 content=$3
   if [[ -n "$content" ]]; then
-    echo -n "%K{$bg}%F{$fg} $content %f%k "
+    echo -n "%K{$bg}%F{$fg} $content %f%k"
   fi
+}
+
+_mikoto_separator() {
+  echo -n "%F{#4a4a52}─%f"
 }
 
 # --- Build prompt ---
@@ -18,33 +22,36 @@ _mikoto_prompt() {
 
   local p=""
 
-  # Username: bg-light, text-secondary
+  # Group 1: Username + Directory (related)
   p+="$(_mikoto_segment '#1c1c22' '#9CA3AF' '%n')"
-
-  # Directory: cyan, white
   p+="$(_mikoto_segment '#06B6D4' '#ffffff' '%~')"
 
-  # Git branch: blue, white (conditional)
+  # Group 2: Git info (related within group)
   if git rev-parse --is-inside-work-tree &>/dev/null; then
+    local git_info=""
     local branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
     if [[ -n "$branch" ]]; then
-      p+="$(_mikoto_segment '#2563EB' '#ffffff' "$branch")"
+      git_info+="$(_mikoto_segment '#2563EB' '#ffffff' "$branch")"
     fi
-
-    # Git dirty: purple, white (conditional)
     local changes=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
     if [[ "$changes" -gt 0 ]]; then
-      p+="$(_mikoto_segment '#8B5CF6' '#ffffff' "*$changes")"
+      git_info+="$(_mikoto_segment '#8B5CF6' '#ffffff' "*$changes")"
+    fi
+    if [[ -n "$git_info" ]]; then
+      p+="$(_mikoto_separator)"
+      p+="$git_info"
     fi
   fi
 
-  # Nix shell: cyan-bright, black (conditional)
+  # Group 3: Nix shell
   if [[ -n "$IN_NIX_SHELL" ]]; then
+    p+="$(_mikoto_separator)"
     p+="$(_mikoto_segment '#22D3EE' '#0a0a0c' 'nix')"
   fi
 
-  # Error: magenta, white (conditional)
+  # Group 4: Error
   if [[ $exit_code -ne 0 ]]; then
+    p+="$(_mikoto_separator)"
     p+="$(_mikoto_segment '#EC4899' '#ffffff' "!$exit_code")"
   fi
 
