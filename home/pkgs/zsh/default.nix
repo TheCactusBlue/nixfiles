@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  home.file.".oh-my-zsh-custom/themes/mikoto.zsh-theme".source = ./mikoto.zsh-theme;
+
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
@@ -8,7 +10,8 @@
         "git"
         "docker"
       ];
-      theme = "robbyrussell";
+      custom = "${config.home.homeDirectory}/.oh-my-zsh-custom";
+      theme = "mikoto";
     };
 
     # You can add the zsh-nix-shell plugin declaratively too
@@ -26,10 +29,6 @@
     ];
 
     initExtra = ''
-      # Show nix-shell indicator in prompt
-      if [[ -n "$IN_NIX_SHELL" ]]; then
-        PROMPT="%{$fg[cyan]%}❄ %{$reset_color%} $PROMPT"
-      fi
       alias clod="claude"
     '';
   };

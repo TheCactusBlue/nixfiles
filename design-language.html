@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mikoto — Where conversations grow into knowledge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #0a0a0c;
+      --bg-dark: #0d0d10;
+      --bg-mid: #141418;
+      --bg-light: #1c1c22;
+      --bg-lighter: #26262e;
+      
+      --blue: #2563EB;
+      --blue-light: #3B82F6;
+      --blue-bright: #60A5FA;
+      --cyan: #06B6D4;
+      --cyan-bright: #22D3EE;
+      --magenta: #EC4899;
+      --magenta-bright: #F472B6;
+      --purple: #8B5CF6;
+      
+      --text-primary: #FFFFFF;
+      --text-secondary: #9CA3AF;
+      --text-dim: #6B7280;
+      
+      --border: #2a2a32;
+      --cell-gap: 1px;
+      --unit: 80px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      color: white;
+    }
+
+    .logo-text {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 14px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      background: var(--bg-mid);
+    }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: white !important;
+    }
+
+    /* Page container with side margins */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    /* Drawer group - each major section */
+    .drawer-group {
+      margin-bottom: 24px;
+    }
+
+    /* Grid system - 12 unit columns */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--cell-gap);
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    /* Cell base */
+    .cell {
+      padding: 24px;
+      min-height: var(--unit);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Size classes - squares and rectangles based on unit grid */
+    .w1 { grid-column: span 1; }
+    .w2 { grid-column: span 2; }
+    .w3 { grid-column: span 3; }
+    .w4 { grid-column: span 4; }
+    .w5 { grid-column: span 5; }
+    .w6 { grid-column: span 6; }
+    .w7 { grid-column: span 7; }
+    .w8 { grid-column: span 8; }
+    .w9 { grid-column: span 9; }
+    .w10 { grid-column: span 10; }
+    .w11 { grid-column: span 11; }
+    .w12 { grid-column: span 12; }
+
+    .h1 { grid-row: span 1; }
+    .h2 { grid-row: span 2; }
+    .h3 { grid-row: span 3; }
+    .h4 { grid-row: span 4; }
+
+    /* Theme classes */
+    .dark { background: var(--bg-dark); }
+    .mid { background: var(--bg-mid); }
+    .light { background: var(--bg-light); }
+    .lighter { background: var(--bg-lighter); }
+
+    .fill-blue { background: var(--blue); }
+    .fill-cyan { background: var(--cyan); }
+    .fill-magenta { background: var(--magenta); }
+    .fill-purple { background: var(--purple); }
+
+    .accent-blue { border-left: 3px solid var(--blue); }
+    .accent-cyan { border-left: 3px solid var(--cyan); }
+    .accent-magenta { border-left: 3px solid var(--magenta); }
+    .accent-purple { border-left: 3px solid var(--purple); }
+
+    /* Cell label */
+    .cell-id {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: var(--text-dim);
+      opacity: 0.5;
+    }
+
+    .fill-blue .cell-id,
+    .fill-cyan .cell-id,
+    .fill-magenta .cell-id,
+    .fill-purple .cell-id {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Typography */
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .tag-cyan { color: var(--cyan-bright); }
+    .tag-blue { color: var(--blue-bright); }
+    .tag-magenta { color: var(--magenta-bright); }
+
+    h1 {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    h1 .grad {
+      background: linear-gradient(135deg, var(--blue-bright) 0%, var(--cyan-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .desc-sm {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-light);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--blue);
+      background: var(--bg-mid);
+    }
+
+    /* Stat display */
+    .stat {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .stat-num {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .stat-num.blue { color: var(--blue-bright); }
+    .stat-num.cyan { color: var(--cyan-bright); }
+    .stat-num.magenta { color: var(--magenta-bright); }
+
+    .fill-blue .stat-num,
+    .fill-cyan .stat-num,
+    .fill-magenta .stat-num {
+      color: white;
+    }
+
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .fill-blue .stat-label,
+    .fill-cyan .stat-label,
+    .fill-magenta .stat-label {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Illustration placeholders */
+    .illust {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 10px;
+      border: 1px dashed var(--border);
+      margin: -24px;
+      padding: 24px;
+    }
+
+    .mid .illust,
+    .light .illust {
+      border-color: var(--bg-lighter);
+    }
+
+    .illust-icon {
+      font-size: 32px;
+      opacity: 0.6;
+    }
+
+    .illust-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* Mockup */
+    .mockup {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: -24px;
+    }
+
+    .mockup-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      background: var(--bg-mid);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-r { background: #ef4444; }
+    .dot-y { background: #eab308; }
+    .dot-g { background: #22c55e; }
+
+    .mockup-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+    }
+
+    .mockup-side {
+      background: var(--bg-dark);
+      border-right: 1px solid var(--border);
+      padding: 10px 6px;
+    }
+
+    .m-section {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 8px 4px;
+    }
+
+    .m-ch {
+      font-size: 10px;
+      color: var(--text-secondary);
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .m-ch.active {
+      background: var(--blue);
+      color: white;
+    }
+
+    .m-ch-hash {
+      opacity: 0.5;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+    }
+
+    .mockup-main {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .m-msg {
+      display: flex;
+      gap: 8px;
+    }
+
+    .m-av {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .m-av-b { background: var(--blue); }
+    .m-av-m { background: var(--magenta); }
+    .m-av-c { background: var(--cyan); }
+
+    .m-lines {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 4px;
+    }
+
+    .m-line {
+      height: 6px;
+      background: var(--bg-light);
+    }
+
+    .m-line-s { width: 50%; }
+    .m-line-m { width: 70%; }
+    .m-line-l { width: 90%; }
+
+    /* Feature icon */
+    .feat-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 14px;
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+    }
+
+    .light .feat-icon {
+      background: var(--bg-lighter);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 2px;
+    }
+
+    .tab {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      padding: 10px 16px;
+      background: var(--bg-mid);
+      color: var(--text-secondary);
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+
+    .tab:hover {
+      color: var(--text-primary);
+      background: var(--bg-light);
+    }
+
+    .tab.active {
+      background: var(--blue);
+      color: white;
+    }
+
+    /* Screenshot placeholder */
+    .screenshot {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px dashed var(--border);
+      margin: -24px;
+      padding: 24px;
+    }
+
+    .screenshot-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .screenshot-icon.blue { background: var(--blue); }
+    .screenshot-icon.cyan { background: var(--cyan); }
+    .screenshot-icon.magenta { background: var(--magenta); }
+
+    /* UI Components */
+    .ui-box {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      height: 100%;
+      margin: -24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ui-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-mid);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ui-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ui-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7px;
+      padding: 3px 6px;
+      background: rgba(6, 182, 212, 0.2);
+      color: var(--cyan-bright);
+      border: 1px solid var(--cyan);
+      text-transform: uppercase;
+    }
+
+    .ui-body {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .ui-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+    }
+
+    .ui-row:hover {
+      background: var(--bg-mid);
+      border-left-color: var(--blue);
+    }
+
+    .ui-row-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+    }
+
+    .ui-row-info { flex: 1; }
+
+    .ui-row-title {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .ui-row-meta {
+      font-size: 9px;
+      color: var(--text-dim);
+    }
+
+    /* Toggle */
+    .perm-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .perm-row:last-child {
+      border-bottom: none;
+    }
+
+    .perm-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .perm-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      background: var(--bg-mid);
+    }
+
+    .perm-name {
+      font-size: 11px;
+    }
+
+    .toggle {
+      width: 36px;
+      height: 20px;
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 12px;
+      height: 12px;
+      background: var(--text-dim);
+      transition: all 0.2s;
+    }
+
+    .toggle.on {
+      background: var(--blue);
+      border-color: var(--blue-light);
+    }
+
+    .toggle.on::after {
+      left: 19px;
+      background: white;
+    }
+
+    /* Code block */
+    .code {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      height: 100%;
+      margin: -24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .code-bar {
+      display: flex;
+      gap: 5px;
+      padding: 8px 12px;
+      background: var(--bg-mid);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-body {
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      line-height: 1.9;
+      flex: 1;
+    }
+
+    .code .cmt { color: var(--text-dim); }
+    .code .kw { color: var(--blue-bright); }
+    .code .str { color: var(--cyan-bright); }
+
+    /* Showcase panels */
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Check list */
+    .checks {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .checks li {
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checks li::before {
+      content: '→';
+      color: var(--cyan-bright);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .footer-copy .heart {
+      color: var(--magenta);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .page {
+        padding: 16px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      .w7, .w8, .w9, .w10, .w11, .w12 { grid-column: span 6; }
+      .w4, .w5, .w6 { grid-column: span 6; }
+      .w1, .w2, .w3 { grid-column: span 3; }
+
+      .mockup-body {
+        grid-template-columns: 1fr;
+      }
+
+      .mockup-side {
+        display: none;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .w1, .w2 { grid-column: span 2; }
+      .w3, .w4, .w5, .w6, .w7, .w8, .w9, .w10, .w11, .w12 { grid-column: span 4; }
+
+      .footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">美</div>
+    <span class="logo-text">Mikoto</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#community">Community</a>
+    <a href="#">GitHub</a>
+    <a href="#" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO GROUP -->
+  <div class="drawer-group">
+    <div class="grid">
+      <!-- Row 1-2: Hero text + mockup -->
+      <div class="cell w6 h2 dark">
+        <span class="cell-id">001</span>
+        <div class="tag tag-cyan">Open Source Platform</div>
+        <h1>Where conversations <span class="grad">grow into knowledge</span></h1>
+        <p class="desc">Real-time chat that doesn't forget. Documentation that stays alive.</p>
+        <div class="btn-row">
+          <a href="#" class="btn btn-primary">→ Start</a>
+          <a href="#" class="btn btn-ghost">GitHub</a>
+        </div>
+      </div>
+
+      <div class="cell w6 h2 mid">
+        <span class="cell-id">002</span>
+        <div class="mockup">
+          <div class="mockup-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-side">
+              <div class="m-section">Channels</div>
+              <div class="m-ch active"><span class="m-ch-hash">#</span> general</div>
+              <div class="m-ch"><span class="m-ch-hash">#</span> dev</div>
+              <div class="m-section">Wiki</div>
+              <div class="m-ch"><span class="m-ch-hash">📄</span> docs</div>
+            </div>
+            <div class="mockup-main">
+              <div class="m-msg">
+                <div class="m-av m-av-b"></div>
+                <div class="m-lines">
+                  <div class="m-line m-line-l"></div>
+                  <div class="m-line m-line-m"></div>
+                </div>
+              </div>
+              <div class="m-msg">
+                <div class="m-av m-av-m"></div>
+                <div class="m-lines">
+                  <div class="m-line m-line-m"></div>
+                </div>
+              </div>
+              <div class="m-msg">
+                <div class="m-av m-av-c"></div>
+                <div class="m-lines">
+                  <div class="m-line m-line-s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Stats -->
+      <div class="cell w3 fill-blue">
+        <span class="cell-id">003</span>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">History</span>
+        </div>
+      </div>
+
+      <div class="cell w3 light">
+        <span class="cell-id">004</span>
+        <div class="stat">
+          <span class="stat-num cyan">100%</span>
+          <span class="stat-label">Open Source</span>
+        </div>
+      </div>
+
+      <div class="cell w3 mid">
+        <span class="cell-id">005</span>
+        <div class="stat">
+          <span class="stat-num magenta">0</span>
+          <span class="stat-label">Lock-in</span>
+        </div>
+      </div>
+
+      <div class="cell w3 fill-cyan">
+        <span class="cell-id">006</span>
+        <div class="stat">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">Uptime</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM GROUP -->
+  <div class="drawer-group">
+    <div class="grid">
+      <div class="cell w8 mid accent-cyan">
+        <span class="cell-id">007</span>
+        <h2>Your tools are fighting each other</h2>
+        <p class="desc" style="margin-top: 16px;">
+          <strong style="color: var(--cyan-bright)">Chat is ephemeral.</strong> Decisions vanish into scroll history.<br><br>
+          <strong style="color: var(--magenta-bright)">Wikis are graveyards.</strong> Documentation rots instantly.
+        </p>
+      </div>
+
+      <div class="cell w4 h2 light">
+        <span class="cell-id">008</span>
+        <div class="illust">
+          <span class="illust-icon">🌵</span>
+          <span class="illust-text">Illustration<br>Chaos → Order</span>
+        </div>
+      </div>
+
+      <div class="cell w4 dark">
+        <span class="cell-id">009</span>
+        <div class="illust">
+          <span class="illust-icon">💬</span>
+          <span class="illust-text">Chat</span>
+        </div>
+      </div>
+
+      <div class="cell w4 fill-magenta">
+        <span class="cell-id">010</span>
+        <div class="stat">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Platform</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES GROUP -->
+  <div class="drawer-group" id="features">
+    <div class="grid">
+      <div class="cell w12 dark">
+        <span class="cell-id">011</span>
+        <div class="tag tag-blue">// Features</div>
+        <h2>Everything in one place</h2>
+      </div>
+
+      <div class="cell w4 mid">
+        <span class="cell-id">012</span>
+        <div class="feat-icon">💬</div>
+        <h3>Real-time chat</h3>
+        <p class="desc-sm">Channels, threads, DMs. Built for speed.</p>
+      </div>
+
+      <div class="cell w4 light">
+        <span class="cell-id">013</span>
+        <div class="feat-icon">📚</div>
+        <h3>Living docs</h3>
+        <p class="desc-sm">Wikis alongside conversations.</p>
+      </div>
+
+      <div class="cell w4 fill-purple">
+        <span class="cell-id">014</span>
+        <div class="feat-icon" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">⚡</div>
+        <h3>Superuser tools</h3>
+        <p class="desc-sm" style="color: rgba(255,255,255,0.8);">Moderation that actually works.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOWCASE GROUP -->
+  <div class="drawer-group">
+    <div class="grid">
+      <div class="cell w12 dark">
+        <span class="cell-id">015</span>
+        <div class="tabs">
+          <button class="tab active" data-tab="chat">Chat</button>
+          <button class="tab" data-tab="wiki">Docs</button>
+          <button class="tab" data-tab="admin">Admin</button>
+        </div>
+      </div>
+
+      <div class="cell w4 mid panel active" data-panel="chat">
+        <span class="cell-id">016</span>
+        <h3>Chat that feels instant</h3>
+        <p class="desc-sm">Pin messages, branch threads, never lose context.</p>
+        <ul class="checks">
+          <li>Threaded conversations</li>
+          <li>Rich formatting</li>
+          <li>Full-text search</li>
+        </ul>
+      </div>
+
+      <div class="cell w4 mid panel" data-panel="wiki">
+        <span class="cell-id">016</span>
+        <h3>Docs that live</h3>
+        <p class="desc-sm">Turn any message into documentation.</p>
+        <ul class="checks">
+          <li>Markdown + embeds</li>
+          <li>Version history</li>
+          <li>Collaborative editing</li>
+        </ul>
+      </div>
+
+      <div class="cell w4 mid panel" data-panel="admin">
+        <span class="cell-id">016</span>
+        <h3>Admin that works</h3>
+        <p class="desc-sm">Permissions and audit logs done right.</p>
+        <ul class="checks">
+          <li>Granular roles</li>
+          <li>Complete logs</li>
+          <li>Auto-moderation</li>
+        </ul>
+      </div>
+
+      <div class="cell w8 h2 light panel active" data-panel="chat">
+        <span class="cell-id">017</span>
+        <div class="screenshot">
+          <div class="screenshot-icon blue">💬</div>
+          <span class="illust-text">Chat Screenshot</span>
+        </div>
+      </div>
+
+      <div class="cell w8 h2 light panel" data-panel="wiki">
+        <span class="cell-id">017</span>
+        <div class="screenshot">
+          <div class="screenshot-icon cyan">📚</div>
+          <span class="illust-text">Wiki Screenshot</span>
+        </div>
+      </div>
+
+      <div class="cell w8 h2 light panel" data-panel="admin">
+        <span class="cell-id">017</span>
+        <div class="screenshot">
+          <div class="screenshot-icon magenta">⚡</div>
+          <span class="illust-text">Admin Screenshot</span>
+        </div>
+      </div>
+
+      <div class="cell w4 dark">
+        <span class="cell-id">018</span>
+        <div class="illust">
+          <span class="illust-icon">🔗</span>
+          <span class="illust-text">Connected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEEP DIVE GROUP -->
+  <div class="drawer-group">
+    <div class="grid">
+      <div class="cell w6 mid accent-blue">
+        <span class="cell-id">019</span>
+        <h3>Your wiki, always in sync</h3>
+        <p class="desc-sm" style="margin: 12px 0;">Turn conversations into docs with a click. Knowledge grows organically.</p>
+        <a href="#" class="btn btn-ghost" style="margin-top: auto;">Learn more →</a>
+      </div>
+
+      <div class="cell w6 dark">
+        <span class="cell-id">020</span>
+        <div class="ui-box">
+          <div class="ui-bar">
+            <span class="ui-title">Recent Updates</span>
+            <span class="ui-badge">Live</span>
+          </div>
+          <div class="ui-body">
+            <div class="ui-row">
+              <div class="ui-row-icon">📄</div>
+              <div class="ui-row-info">
+                <div class="ui-row-title">API Auth</div>
+                <div class="ui-row-meta">2m · @synthia</div>
+              </div>
+            </div>
+            <div class="ui-row">
+              <div class="ui-row-icon">🔧</div>
+              <div class="ui-row-info">
+                <div class="ui-row-title">Deploy</div>
+                <div class="ui-row-meta">15m · @neo</div>
+              </div>
+            </div>
+            <div class="ui-row">
+              <div class="ui-row-icon">🎮</div>
+              <div class="ui-row-info">
+                <div class="ui-row-title">Raid v2</div>
+                <div class="ui-row-meta">1h · @kira</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell w6 dark">
+        <span class="cell-id">021</span>
+        <div class="ui-box">
+          <div class="ui-bar">
+            <span class="ui-title">Role: Mod</span>
+            <span class="ui-badge">Edit</span>
+          </div>
+          <div class="ui-body">
+            <div class="perm-row">
+              <div class="perm-info">
+                <div class="perm-icon">💬</div>
+                <span class="perm-name">Messages</span>
+              </div>
+              <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+            </div>
+            <div class="perm-row">
+              <div class="perm-info">
+                <div class="perm-icon">📄</div>
+                <span class="perm-name">Wiki</span>
+              </div>
+              <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+            </div>
+            <div class="perm-row">
+              <div class="perm-info">
+                <div class="perm-icon">👤</div>
+                <span class="perm-name">Members</span>
+              </div>
+              <div class="toggle" onclick="this.classList.toggle('on')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cell w6 light accent-magenta">
+        <span class="cell-id">022</span>
+        <h3>Permissions that make sense</h3>
+        <p class="desc-sm" style="margin: 12px 0;">Granular controls. Every action logged.</p>
+        <a href="#" class="btn btn-ghost" style="margin-top: auto;">Explore →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE GROUP -->
+  <div class="drawer-group" id="community">
+    <div class="grid">
+      <div class="cell w12 dark">
+        <span class="cell-id">023</span>
+        <div class="tag tag-magenta">// Built For</div>
+        <h2>Communities that build</h2>
+      </div>
+
+      <div class="cell w4 mid">
+        <span class="cell-id">024</span>
+        <div class="feat-icon">🛠️</div>
+        <h3>Tech communities</h3>
+        <p class="desc-sm">Open source, dev teams, collectives.</p>
+      </div>
+
+      <div class="cell w4 fill-blue">
+        <span class="cell-id">025</span>
+        <div class="feat-icon" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">🎮</div>
+        <h3>Gaming guilds</h3>
+        <p class="desc-sm" style="color: rgba(255,255,255,0.8);">Raids, lore, coordination.</p>
+      </div>
+
+      <div class="cell w4 light">
+        <span class="cell-id">026</span>
+        <div class="feat-icon">🔧</div>
+        <h3>Maker spaces</h3>
+        <p class="desc-sm">Projects, docs, collaboration.</p>
+      </div>
+
+      <div class="cell w3 dark">
+        <span class="cell-id">027</span>
+        <div class="illust">
+          <span class="illust-icon">👩‍💻</span>
+          <span class="illust-text">Dev</span>
+        </div>
+      </div>
+
+      <div class="cell w3 light">
+        <span class="cell-id">028</span>
+        <div class="illust">
+          <span class="illust-icon">🧝</span>
+          <span class="illust-text">Gamer</span>
+        </div>
+      </div>
+
+      <div class="cell w3 mid">
+        <span class="cell-id">029</span>
+        <div class="illust">
+          <span class="illust-icon">🔩</span>
+          <span class="illust-text">Maker</span>
+        </div>
+      </div>
+
+      <div class="cell w3 fill-cyan">
+        <span class="cell-id">030</span>
+        <div class="illust" style="border-color: rgba(255,255,255,0.3);">
+          <span class="illust-icon" style="opacity: 1;">🌱</span>
+          <span class="illust-text" style="color: rgba(255,255,255,0.7);">Grow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPEN SOURCE GROUP -->
+  <div class="drawer-group">
+    <div class="grid">
+      <div class="cell w12 dark">
+        <span class="cell-id">031</span>
+        <div class="tag tag-cyan">// Open Source</div>
+        <h2>Your community, your rules</h2>
+      </div>
+
+      <div class="cell w6 light accent-cyan">
+        <span class="cell-id">032</span>
+        <h3>Actually open source</h3>
+        <p class="desc-sm" style="margin: 12px 0;">No lock-in. No surprise pricing. Self-host it, fork it, own it.</p>
+        <a href="#" class="btn btn-primary" style="margin-top: 12px;">→ GitHub</a>
+      </div>
+
+      <div class="cell w6 dark">
+        <span class="cell-id">033</span>
+        <div class="code">
+          <div class="code-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+          </div>
+          <div class="code-body">
+            <span class="cmt"># Get started</span><br>
+            <span class="kw">git clone</span> <span class="str">mikoto-io/mikoto</span><br>
+            <span class="kw">cd</span> mikoto<br>
+            <span class="kw">docker compose</span> up<br><br>
+            <span class="cmt"># You're live 🌵</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+      <a href="#">Discord</a>
+      <a href="#">Twitter</a>
+    </div>
+    <div class="footer-copy">
+      Made with <span class="heart">♥</span> for weird communities
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      
+      tab.classList.add('active');
+      document.querySelectorAll(`[data-panel="${target}"]`).forEach(p => p.classList.add('active'));
+    });
+  });
+</script>
+
+</body>
+</html>
