@@ -35,6 +35,7 @@ segment() { printf '\033[48;2;%sm\033[38;2;%sm %s \033[0m' "$1" "$2" "$3"; }
 sep() { printf '\033[38;2;74;74;82m─\033[0m'; }
 
 out=""
+out+="$(segment '230;152;69' '156;163;175' "󰛄")"
 out+="$(segment '28;28;34' '156;163;175' "$model")"
 out+="$(segment '6;182;212' '255;255;255' "$dir")"
 out+="$(sep)"
@@ -43,7 +44,7 @@ if [ -n "$branch" ]; then
   git_info="$branch"
   [ "$ahead" -gt 0 ] 2>/dev/null && git_info+=" ↑$ahead"
   [ "$behind" -gt 0 ] 2>/dev/null && git_info+=" ↓$behind"
-  out+="$(sep)$(segment '37;99;235' '255;255;255' "$git_info")"
+  out+="$(sep)$(segment '37;99;235' '255;255;255' " $git_info")"
   git_delta=""
   [ "$staged" -gt 0 ] 2>/dev/null && git_delta="+$staged"
   [ "$modified" -gt 0 ] 2>/dev/null && git_delta+="${git_delta:+ }~$modified"

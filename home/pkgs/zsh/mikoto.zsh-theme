@@ -31,7 +31,7 @@ _mikoto_prompt() {
     local git_info=""
     local branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
     if [[ -n "$branch" ]]; then
-      git_info+="$(_mikoto_segment '#2563EB' '#ffffff' "$branch")"
+      git_info+="$(_mikoto_segment '#2563EB' '#ffffff' " $branch")"
     fi
     local changes=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
     if [[ "$changes" -gt 0 ]]; then
