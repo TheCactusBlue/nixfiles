@@ -14,6 +14,25 @@ let
     "docs.anthropic.com"
     "www.npmjs.com"
   ];
+  bwrapWrapper = pkgs.writeShellScriptBin "bwrap" ''
+    snapshot=$(mktemp)
+    after=$(mktemp)
+    trap 'rm -f "$snapshot" "$after"' EXIT
+    {
+      find . -maxdepth 1 ! -name .
+      [ -d .claude ] && find .claude -maxdepth 1 ! -name .claude
+    } 2>/dev/null | sort > "$snapshot"
+    ${pkgs.bubblewrap}/bin/bwrap "$@"
+    rc=$?
+    {
+      find . -maxdepth 1 ! -name .
+      [ -d .claude ] && find .claude -maxdepth 1 ! -name .claude
+    } 2>/dev/null | sort > "$after"
+    comm -13 "$snapshot" "$after" | while IFS= read -r f; do
+      [ -f "$f" ] && [ ! -s "$f" ] && rm -f "$f" 2>/dev/null
+    done
+    exit "$rc"
+  '';
 in
 {
   programs.claude-code = {
@@ -68,11 +87,12 @@ in
           "docker"
         ];
       };
+
     };
 
   };
   home.packages = with pkgs; [
-    bubblewrap
+    bwrapWrapper
     socat
     ripgrep
   ];
