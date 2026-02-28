@@ -35,11 +35,9 @@ segment() { printf '\033[48;2;%sm\033[38;2;%sm %s \033[0m' "$1" "$2" "$3"; }
 sep() { printf '\033[38;2;74;74;82m─\033[0m'; }
 
 out=""
-out+="$(segment '230;152;69' '156;163;175' "󰛄")"
+out+="$(segment '230;133;69' '156;163;175' "󰛄")"
 out+="$(segment '28;28;34' '156;163;175' "$model")"
 out+="$(segment '6;182;212' '255;255;255' "$dir")"
-out+="$(sep)"
-out+="$(segment '139;92;246' '255;255;255' "$context_pct%")"
 if [ -n "$branch" ]; then
   git_info="$branch"
   [ "$ahead" -gt 0 ] 2>/dev/null && git_info+=" ↑$ahead"
@@ -50,4 +48,7 @@ if [ -n "$branch" ]; then
   [ "$modified" -gt 0 ] 2>/dev/null && git_delta+="${git_delta:+ }~$modified"
   [ -n "$git_delta" ] && out+="$(segment '22;163;74' '255;255;255' "$git_delta")"
 fi
+
+out+="$(sep)"
+out+="$(segment '139;92;246' '255;255;255' "$context_pct%")"
 echo -e "$out"
