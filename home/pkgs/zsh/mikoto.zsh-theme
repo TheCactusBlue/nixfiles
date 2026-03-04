@@ -58,9 +58,9 @@ _mikoto_prompt() {
   # Newline + arrow
   p+=$'\n'
   if [[ $exit_code -ne 0 ]]; then
-    p+="%F{#EC4899}❱%f "
+    p+="%F{#EC4899}❯%f "
   else
-    p+="%F{#2563EB}❱%f "
+    p+="%F{#2563EB}❯%f "
   fi
 
   echo -n "$p"

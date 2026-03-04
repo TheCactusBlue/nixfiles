@@ -12,6 +12,7 @@ in
   programs.ghostty = {
     enable = true;
     settings = {
+      font-size = 14;
       window-padding-x = 12;
       window-padding-y = 12;
       palette = attrValues (mapAttrs (name: value: name + "=" + value) theme.ansi);

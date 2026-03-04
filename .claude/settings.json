@@ -37,9 +37,5 @@
       "WebFetch(domain:www.npmjs.com)",
       "WebSearch"
     ]
-  },
-  "sandbox": {
-    "autoAllowBashIfSandboxed": true,
-    "enabled": true
   }
 }

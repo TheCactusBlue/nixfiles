@@ -69,6 +69,25 @@ in
         ];
       };
 
+      spinnerVerbs = {
+        mode = "append";
+        verbs = [
+          "Brainrotting"
+          "Caffeinating"
+          "Illuminating"
+          "Herding"
+          "Watering"
+          "Estrogenizing"
+          "Force Feminizing"
+          "Mutating"
+          "Hyperstitioning"
+          "Shipping"
+          "Constructing"
+          "Aura Farming"
+          "Procrastinating"
+          "Imbuing"
+        ];
+      };
     };
 
   };

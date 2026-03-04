@@ -29,7 +29,7 @@
     ];
 
     initExtra = ''
-      alias clod="claude"
+      alias c="claude"
     '';
   };
 }
