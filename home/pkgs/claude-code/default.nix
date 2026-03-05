@@ -7,12 +7,14 @@
 let
   allowedDomains = [
     "docs.rs"
+    "crates.io"
+    "static.crates.io"
     "github.com"
     "raw.githubusercontent.com"
     "openai.com"
     "anthropic.com"
     "docs.anthropic.com"
-    "www.npmjs.com"
+    "npmjs.com"
   ];
 in
 {
@@ -21,6 +23,7 @@ in
     settings = {
       permissions.allow = [
         "WebSearch"
+        "Read(~/.cargo/registry/**)"
       ]
       ++ map (cmd: "Bash(${cmd})") [
         "find:*"

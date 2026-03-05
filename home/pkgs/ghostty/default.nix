@@ -12,6 +12,7 @@ in
   programs.ghostty = {
     enable = true;
     settings = {
+      window-inherit-font-size = false;
       font-size = 11;
       window-padding-x = 12;
       window-padding-y = 12;
