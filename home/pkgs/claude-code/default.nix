@@ -6,15 +6,21 @@
 }:
 let
   allowedDomains = [
-    "docs.rs"
-    "crates.io"
-    "static.crates.io"
+    # Repositories
     "github.com"
     "raw.githubusercontent.com"
-    "openai.com"
-    "anthropic.com"
-    "docs.anthropic.com"
+    # Rust
+    "docs.rs"
+    "crates.io"
+    "*.crates.io"
+    # JS
     "npmjs.com"
+    # Python
+    "pypi.org"
+    # AI
+    "anthropic.com"
+    "*.anthropic.com"
+    "openai.com"
   ];
 in
 {
