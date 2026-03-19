@@ -26,6 +26,7 @@ in
 {
   programs.claude-code = {
     enable = true;
+    enableMcpIntegration = true;
     settings = {
       voiceEnabled = true;
       permissions.allow = [
@@ -69,10 +70,6 @@ in
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       };
 
-      mcpServers.playwright = {
-        command = "mcp-server-playwright";
-      };
-
       sandbox = {
         enabled = true;
         autoAllowBashIfSandboxed = true;
@@ -106,6 +103,14 @@ in
           "Procrastinating"
           "Imbuing"
         ];
+      };
+    };
+    mcpServers = {
+      playwright = {
+        type = "stdio";
+        command = "mcp-server-playwright";
+        args = [ ];
+        env = { };
       };
     };
 
