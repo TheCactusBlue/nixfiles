@@ -27,6 +27,7 @@ in
   programs.claude-code = {
     enable = true;
     settings = {
+      voiceEnabled = true;
       permissions.allow = [
         "WebSearch"
         "Read(~/.cargo/registry/**)"
@@ -66,6 +67,10 @@ in
 
       env = {
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+      };
+
+      mcpServers.playwright = {
+        command = "mcp-server-playwright";
       };
 
       sandbox = {
@@ -109,5 +114,7 @@ in
     bubblewrap
     socat
     ripgrep
+    sox
+    playwright-mcp
   ];
 }

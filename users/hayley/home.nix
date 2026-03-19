@@ -59,7 +59,6 @@
     tor
     monero-gui
     inputs.hytale-launcher.packages.${pkgs.system}.default
-    microsoft-edge
 
     uv
     racket
