@@ -209,9 +209,9 @@ with lib;
       "$mainMod, mouse_up, split:workspace, e-1"
 
       # Screenshots
-      "$mainMod, PRINT, exec, hyprshot -m window"
-      ", PRINT, exec, hyprshot -m output"
-      "$shiftMod, PRINT, exec, hyprshot -m region"
+      "$mainMod, PRINT, exec, hyprshot -m window --clipboard-only"
+      ", PRINT, exec, hyprshot -m output --clipboard-only"
+      "$shiftMod, PRINT, exec, hyprshot -m region --clipboard-only"
 
       # Screen control
       "$mainMod SHIFT, L, exec, hyprctl dispatch dpms toggle"

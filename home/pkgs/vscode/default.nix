@@ -21,6 +21,7 @@ in
           arrterian.nix-env-selector
           # Tooling
           ms-azuretools.vscode-docker
+          ms-vscode-remote.remote-containers
           bbenoist.nix
           jnoortheen.nix-ide
 
