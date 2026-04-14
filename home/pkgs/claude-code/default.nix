@@ -120,6 +120,7 @@ in
     socat
     ripgrep
     sox
+    xclip
     playwright-mcp
   ];
 }
