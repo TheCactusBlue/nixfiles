@@ -15,6 +15,7 @@
     # development tools
     /vscode/default.nix
     /claude-code/default.nix
+    /nh/default.nix
 
     # ricing
     /neofetch/default.nix

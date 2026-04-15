@@ -93,6 +93,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "hmbackup";
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.hayley = import ./users/hayley/home-darwin.nix;
             }

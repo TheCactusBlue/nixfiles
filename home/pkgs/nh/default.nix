@@ -1,8 +1,15 @@
 { config, pkgs, ... }:
+let
+  flakePath =
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      "/Users/hayley/Projects/nixfiles"
+    else
+      "/home/hayley/Projects/nix";
+in
 {
   programs.nh = {
     enable = true;
-    flake = "/home/hayley/Projects/nix";
+    flake = flakePath;
 
     clean = {
       enable = true;
