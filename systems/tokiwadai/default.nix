@@ -34,7 +34,7 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   # Allow yabai to load the scripting addition without a password
-  environment.etc."sudoers.d/yabai".text = ''
+  security.sudo.extraConfig = ''
     hayley ALL=(root) NOPASSWD: sha256:${builtins.hashFile "sha256" "${pkgs.yabai}/bin/yabai"} ${pkgs.yabai}/bin/yabai --load-sa
   '';
 
