@@ -41,12 +41,17 @@
         current=$((current + 1))
       done
 
-      # Smart gaps: remove padding when only one window on a space
-      padding_refresh_command="p=\$(($(yabai -m query --windows --space | ${pkgs.jq}/bin/jq 'length') == 1 ? 0 : 8)) && \
-        yabai -m config --space mouse top_padding \$p && \
-        yabai -m config --space mouse bottom_padding \$p && \
-        yabai -m config --space mouse left_padding \$p && \
-        yabai -m config --space mouse right_padding \$p"
+      # Smart gaps: fullscreen the window when it's the only one on a space
+      padding_refresh_command="count=\$(yabai -m query --windows --space | ${pkgs.jq}/bin/jq 'length'); \
+        if [ \"\$count\" -eq 1 ]; then \
+          wid=\$(yabai -m query --windows --space | ${pkgs.jq}/bin/jq '.[0].id'); \
+          is_fullscreen=\$(yabai -m query --windows --window \$wid | ${pkgs.jq}/bin/jq '.\"has-fullscreen-zoom\"'); \
+          [ \"\$is_fullscreen\" = \"false\" ] && yabai -m window \$wid --toggle zoom-fullscreen; \
+        else \
+          for wid in \$(yabai -m query --windows --space | ${pkgs.jq}/bin/jq '.[] | select(.\"has-fullscreen-zoom\") | .id'); do \
+            yabai -m window \$wid --toggle zoom-fullscreen; \
+          done; \
+        fi"
 
       yabai -m signal --add event=window_created action="$padding_refresh_command"
       yabai -m signal --add event=window_destroyed action="$padding_refresh_command"
