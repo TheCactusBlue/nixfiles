@@ -87,6 +87,13 @@
       yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
       sudo yabai --load-sa
 
+      # Ensure at least 5 spaces exist
+      current=$(yabai -m query --spaces | ${pkgs.jq}/bin/jq length)
+      while [ "$current" -lt 5 ]; do
+        yabai -m space --create
+        current=$((current + 1))
+      done
+
       # Unmanaged apps
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^Calculator$" manage=off
