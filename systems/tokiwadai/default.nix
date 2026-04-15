@@ -134,6 +134,10 @@
     '';
   };
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
     direnv
