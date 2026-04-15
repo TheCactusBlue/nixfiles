@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -115,12 +116,16 @@ in
     };
 
   };
-  home.packages = with pkgs; [
-    bubblewrap
-    socat
-    ripgrep
-    sox
-    xclip
-    playwright-mcp
-  ];
+  home.packages =
+    with pkgs;
+    [
+      ripgrep
+      sox
+    ]
+    ++ lib.optionals stdenv.hostPlatform.isLinux [
+      bubblewrap
+      socat
+      xclip
+      playwright-mcp
+    ];
 }
