@@ -40,6 +40,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mac-app-util.url = "github:hraban/mac-app-util";
+
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
     claude-code.url = "github:sadjow/claude-code-nix";
   };
@@ -83,6 +85,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./systems/tokiwadai/default.nix
+            inputs.mac-app-util.darwinModules.default
             {
               nixpkgs.overlays = [
                 inputs.rust-overlay.overlays.default
@@ -95,6 +98,9 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "hmbackup";
               home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.sharedModules = [
+                inputs.mac-app-util.homeManagerModules.default
+              ];
               home-manager.users.hayley = import ./users/hayley/home-darwin.nix;
             }
           ];

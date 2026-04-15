@@ -69,6 +69,7 @@ in
 
       env = {
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+        CLAUDE_CODE_NO_FLICKER = "1";
       };
 
       sandbox = {
