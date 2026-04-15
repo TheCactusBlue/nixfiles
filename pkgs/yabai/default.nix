@@ -41,6 +41,18 @@
         current=$((current + 1))
       done
 
+      # Smart gaps: remove padding when only one window on a space
+      padding_refresh_command="p=\$(($(yabai -m query --windows --space | ${pkgs.jq}/bin/jq 'length') == 1 ? 0 : 8)) && \
+        yabai -m config --space mouse top_padding \$p && \
+        yabai -m config --space mouse bottom_padding \$p && \
+        yabai -m config --space mouse left_padding \$p && \
+        yabai -m config --space mouse right_padding \$p"
+
+      yabai -m signal --add event=window_created action="$padding_refresh_command"
+      yabai -m signal --add event=window_destroyed action="$padding_refresh_command"
+      yabai -m signal --add event=application_launched action="$padding_refresh_command"
+      yabai -m signal --add event=application_terminated action="$padding_refresh_command"
+
       # Unmanaged apps
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^Calculator$" manage=off
