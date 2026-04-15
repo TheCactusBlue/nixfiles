@@ -29,6 +29,22 @@
       Clicking = true;
       TrackpadThreeFingerDrag = true;
     };
+    CustomUserPreferences."com.apple.symbolichotkeys" = {
+      AppleSymbolicHotKeys = {
+        # Spotlight search: Option+Space instead of Cmd+Space
+        "64" = {
+          enabled = true;
+          value = {
+            parameters = [
+              32
+              49
+              524288
+            ];
+            type = "standard";
+          };
+        };
+      };
+    };
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;
