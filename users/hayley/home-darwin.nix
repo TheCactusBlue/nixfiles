@@ -9,7 +9,7 @@
     /git/default.nix
     /direnv/default.nix
     /nodejs/default.nix
-    /rust/default.nix
+    # /rust/default.nix
     /python/default.nix
 
     # development tools
@@ -32,6 +32,7 @@
     cmatrix
     cbonsai
     uv
+    rustup
   ];
 
   programs.git.settings.user = {

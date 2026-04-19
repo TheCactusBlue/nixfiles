@@ -3,6 +3,21 @@
   pkgs,
   ...
 }:
+let
+  smartGapsScript = pkgs.writeShellScript "yabai-smart-gaps" ''
+    windows=$(yabai -m query --windows --space)
+    count=$(echo "$windows" | ${pkgs.jq}/bin/jq '[.[] | select(."is-floating" == false and ."is-minimized" == false and ."is-hidden" == false)] | length')
+    if [ "$count" -eq 1 ]; then
+      wid=$(echo "$windows" | ${pkgs.jq}/bin/jq '[.[] | select(."is-floating" == false and ."is-minimized" == false and ."is-hidden" == false)] | .[0].id')
+      is_fullscreen=$(yabai -m query --windows --window "$wid" | ${pkgs.jq}/bin/jq '."has-fullscreen-zoom"')
+      [ "$is_fullscreen" = "false" ] && yabai -m window "$wid" --toggle zoom-fullscreen
+    else
+      for wid in $(echo "$windows" | ${pkgs.jq}/bin/jq '.[] | select(."has-fullscreen-zoom") | .id'); do
+        yabai -m window "$wid" --toggle zoom-fullscreen
+      done
+    fi
+  '';
+in
 {
   # Allow yabai to load the scripting addition without a password
   security.sudo.extraConfig = ''
@@ -42,21 +57,10 @@
       done
 
       # Smart gaps: fullscreen the window when it's the only one on a space
-      padding_refresh_command="count=\$(yabai -m query --windows --space | ${pkgs.jq}/bin/jq 'length'); \
-        if [ \"\$count\" -eq 1 ]; then \
-          wid=\$(yabai -m query --windows --space | ${pkgs.jq}/bin/jq '.[0].id'); \
-          is_fullscreen=\$(yabai -m query --windows --window \$wid | ${pkgs.jq}/bin/jq '.\"has-fullscreen-zoom\"'); \
-          [ \"\$is_fullscreen\" = \"false\" ] && yabai -m window \$wid --toggle zoom-fullscreen; \
-        else \
-          for wid in \$(yabai -m query --windows --space | ${pkgs.jq}/bin/jq '.[] | select(.\"has-fullscreen-zoom\") | .id'); do \
-            yabai -m window \$wid --toggle zoom-fullscreen; \
-          done; \
-        fi"
-
-      yabai -m signal --add event=window_created action="$padding_refresh_command"
-      yabai -m signal --add event=window_destroyed action="$padding_refresh_command"
-      yabai -m signal --add event=application_launched action="$padding_refresh_command"
-      yabai -m signal --add event=application_terminated action="$padding_refresh_command"
+      yabai -m signal --add event=window_created action="${smartGapsScript}"
+      yabai -m signal --add event=window_destroyed action="${smartGapsScript}"
+      yabai -m signal --add event=application_launched action="${smartGapsScript}"
+      yabai -m signal --add event=application_terminated action="${smartGapsScript}"
 
       # Unmanaged apps
       yabai -m rule --add app="^System Settings$" manage=off
