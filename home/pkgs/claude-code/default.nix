@@ -32,7 +32,7 @@ in
       voiceEnabled = true;
       permissions.allow = [
         "WebSearch"
-        "Read(~/.cargo/registry/**)"
+        "Read(~/.cargo/**)"
       ]
       ++ map (cmd: "Bash(${cmd})") [
         "find:*"
