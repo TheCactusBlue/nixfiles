@@ -8,7 +8,7 @@ CACHE_FILE="/tmp/statusline-git-cache"
 CACHE_MAX_AGE=5
 cache_stale() {
   [ ! -f "$CACHE_FILE" ] || \
-  [ $(($(date +%s) - $(stat -f %m "$CACHE_FILE" 2>/dev/null || stat -c %Y "$CACHE_FILE" 2>/dev/null || echo 0))) -gt $CACHE_MAX_AGE ]
+  [ $(($(date +%s) - $(stat -c %Y "$CACHE_FILE" 2>/dev/null || stat -f %m "$CACHE_FILE" 2>/dev/null || echo 0))) -gt $CACHE_MAX_AGE ]
 }
 if cache_stale; then
   if git rev-parse --git-dir > /dev/null 2>&1; then
