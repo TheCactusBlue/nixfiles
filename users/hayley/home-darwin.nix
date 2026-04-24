@@ -32,6 +32,8 @@
     cmatrix
     cbonsai
     uv
+    rustup
+    just
   ];
 
   programs.git.settings.user = {
