@@ -56,6 +56,12 @@
   security.pam.services.hyprlock = { };
   services.trezord.enable = true;
 
+  # OpenRGB: udev rules + i2c only. The SDK daemon is left off because it
+  # claims USB HID devices and blocks GUI writes; uaccess lets the GUI work.
+  services.udev.packages = [ pkgs.openrgb ];
+  boot.kernelModules = [ "i2c-dev" ];
+  hardware.i2c.enable = true;
+
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;

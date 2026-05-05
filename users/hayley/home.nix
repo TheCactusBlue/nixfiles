@@ -61,6 +61,7 @@
 
     uv
     racket
+    openrgb
   ];
 
   programs.git.settings.user = {
