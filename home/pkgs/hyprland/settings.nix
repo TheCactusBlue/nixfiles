@@ -23,7 +23,6 @@ with lib;
       "waybar"
       "hypridle"
       "hyprpaper"
-      # "openrgb --startminimized"
     ];
 
     # Environment variables

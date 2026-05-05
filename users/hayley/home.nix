@@ -44,7 +44,6 @@
     obsidian
     htop
     jq
-    # openrgb
     cmatrix
     cbonsai
     cava
