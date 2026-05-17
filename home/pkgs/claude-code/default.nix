@@ -30,6 +30,7 @@ in
     enableMcpIntegration = true;
     settings = {
       voiceEnabled = true;
+      skipAutoPermissionPrompt = true;
       permissions.allow = [
         "Skill(*)"
         "WebSearch"
