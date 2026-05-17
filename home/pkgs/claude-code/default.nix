@@ -31,6 +31,7 @@ in
     settings = {
       voiceEnabled = true;
       permissions.allow = [
+        "Skill(*)"
         "WebSearch"
         "Read(~/.cargo/**)"
       ]

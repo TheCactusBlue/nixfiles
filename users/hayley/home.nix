@@ -21,6 +21,7 @@
 
     # development tools
     /vscode/default.nix
+    /zed/default.nix
     /claude-code/default.nix
     /nh/default.nix
 
