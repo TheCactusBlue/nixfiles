@@ -124,7 +124,7 @@ with lib;
 
     # Layout settings
     dwindle = {
-      pseudotile = true;
+      # pseudotile removed in Hyprland 0.56; use the `pseudo` dispatcher per-window instead
       preserve_split = true;
     };
 
@@ -169,7 +169,7 @@ with lib;
       "$mainMod, E, exec, $fileManager"
       "$mainMod, V, togglefloating,"
       "$mainMod, P, exec, $menu"
-      "$mainMod, J, togglesplit,"
+      # "$mainMod, J, togglesplit,"
 
       # Focus movement
       "$mainMod, left, movefocus, l"
@@ -193,19 +193,19 @@ with lib;
       in
       lists.flatten (
         map (x: [
-          "$mainMod, ${x.name}, split:workspace, ${x.keybind}"
-          "$mainMod SHIFT, ${x.name}, split:movetoworkspace, ${x.keybind}"
+          # "$mainMod, ${x.name}, split:workspace, ${x.keybind}"
+          # "$mainMod SHIFT, ${x.name}, split:movetoworkspace, ${x.keybind}"
         ]) workspaces
       )
     )
     ++ [
       # Special workspace
       "$mainMod, S, togglespecialworkspace, magic"
-      "$mainMod SHIFT, S, split:movetoworkspace, special:magic"
+      # "$mainMod SHIFT, S, split:movetoworkspace, special:magic"
 
       # Mouse workspace switching
-      "$mainMod, mouse_down, split:workspace, e+1"
-      "$mainMod, mouse_up, split:workspace, e-1"
+      # "$mainMod, mouse_down, split:workspace, e+1"
+      # "$mainMod, mouse_up, split:workspace, e-1"
 
       # Screenshots
       "$mainMod, PRINT, exec, hyprshot -m window --clipboard-only"

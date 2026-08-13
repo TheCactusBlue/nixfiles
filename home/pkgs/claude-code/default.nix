@@ -31,6 +31,8 @@ in
     settings = {
       voiceEnabled = true;
       skipAutoPermissionPrompt = true;
+      remoteControlAtStartup = false;
+      permissions.defaultMode = "auto";
       permissions.allow = [
         "Skill(*)"
         "WebSearch"

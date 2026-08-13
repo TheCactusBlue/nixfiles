@@ -11,7 +11,7 @@
   ];
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprsplit ];
+    # plugins = [ pkgs.hyprlandPlugins.hyprsplit ];
   };
 
   services.hypridle = {
