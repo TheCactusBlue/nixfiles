@@ -11,6 +11,9 @@
   ];
   wayland.windowManager.hyprland = {
     enable = true;
+    # hyprlang is deprecated since Hyprland 0.55; this writes hyprland.lua
+    # instead of hyprland.conf. Becomes the default at stateVersion 26.05.
+    configType = "lua";
     # plugins = [ pkgs.hyprlandPlugins.hyprsplit ];
   };
 
@@ -20,13 +23,15 @@
       # general = {
       #   lock_cmd = "pidof hyprlock || hyprlock";
       #   before_sleep_cmd = "loginctl lock-session";
-      #   after_sleep_cmd = "hyprctl dispatch dpms on";
+      #   after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
       # };
       listener = [
         {
           timeout = 1800; # 30min
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          # With a Lua config, `hyprctl dispatch` evals its argument as Lua
+          # (shorthand for hl.dispatch(...)), so the old `dpms off` no longer parses.
+          on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+          on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
         }
         # {
         #   timeout = 2100; # 35min

@@ -34,9 +34,26 @@
   services.blueman.enable = true;
 
   desktop.hyprland.monitors = [
-    "DP-4, 2560x1440@60, 0x0, 1"
-    "DP-5, 3840x2160@60, 2560x0, 1.5"
-    "DP-2, 2560x682@60, 5120x0, 1, transform, 3" # Hyte Y70 monitor - scaled to ~1600 pxs
+    {
+      output = "DP-4";
+      mode = "2560x1440@60";
+      position = "0x0";
+      scale = "1";
+    }
+    {
+      output = "DP-5";
+      mode = "3840x2160@60";
+      position = "2560x0";
+      scale = "1.5";
+    }
+    # Hyte Y70 monitor - scaled to ~1600 pxs
+    {
+      output = "DP-2";
+      mode = "2560x682@60";
+      position = "5120x0";
+      scale = "1";
+      transform = 3;
+    }
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
