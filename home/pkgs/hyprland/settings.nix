@@ -169,7 +169,8 @@ with lib;
       "$mainMod, E, exec, $fileManager"
       "$mainMod, V, togglefloating,"
       "$mainMod, P, exec, $menu"
-      # "$mainMod, J, togglesplit,"
+      # togglesplit is a dwindle layoutmsg in Hyprland 0.56, not a top-level dispatcher
+      "$mainMod, J, layoutmsg, togglesplit"
 
       # Focus movement
       "$mainMod, left, movefocus, l"
@@ -193,24 +194,24 @@ with lib;
       in
       lists.flatten (
         map (x: [
-          # "$mainMod, ${x.name}, split:workspace, ${x.keybind}"
-          # "$mainMod SHIFT, ${x.name}, split:movetoworkspace, ${x.keybind}"
+          "$mainMod, ${x.name}, workspace, ${x.keybind}"
+          "$mainMod SHIFT, ${x.name}, movetoworkspace, ${x.keybind}"
         ]) workspaces
       )
     )
     ++ [
       # Special workspace
       "$mainMod, S, togglespecialworkspace, magic"
-      # "$mainMod SHIFT, S, split:movetoworkspace, special:magic"
+      "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
       # Mouse workspace switching
-      # "$mainMod, mouse_down, split:workspace, e+1"
-      # "$mainMod, mouse_up, split:workspace, e-1"
+      "$mainMod, mouse_down, workspace, e+1"
+      "$mainMod, mouse_up, workspace, e-1"
 
       # Screenshots
       "$mainMod, PRINT, exec, hyprshot -m window --clipboard-only"
       ", PRINT, exec, hyprshot -m output --clipboard-only"
-      "$shiftMod, PRINT, exec, hyprshot -m region --clipboard-only"
+      "$mainMod SHIFT, PRINT, exec, hyprshot -m region --clipboard-only"
 
       # Screen control
       "$mainMod SHIFT, L, exec, hyprctl dispatch dpms toggle"
