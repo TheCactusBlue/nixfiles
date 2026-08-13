@@ -7,6 +7,9 @@
 let
   fontFamily = "JetBrainsMono Nerd Font Mono";
   fontSize = 14;
+  lineHeight = {
+    custom = 1.4;
+  };
   prettierLanguages = [
     "JavaScript"
     "JSX"
@@ -45,16 +48,12 @@ in
       buffer_font_features = {
         calt = true;
       };
-      buffer_line_height = {
-        custom = 1.3;
-      };
+      buffer_line_height = lineHeight;
 
       terminal = {
         font_family = fontFamily;
         font_size = fontSize;
-        line_height = {
-          custom = 1.2;
-        };
+        line_height = lineHeight;
       };
 
       inlay_hints = {
