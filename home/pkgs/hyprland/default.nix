@@ -165,7 +165,6 @@
 
   home.packages = with pkgs; [
     hyprland-qt-support
-    wofi
     pavucontrol
     pwvucontrol
     hyprshot

@@ -122,6 +122,13 @@ with lib;
       "tile on, match:title ^(VSeeFace)$" # warudo
     ];
 
+    # Layer rules
+    layerrule = [
+      # Hyprland 0.56 rule syntax: fields take values, `ignorealpha` is now `ignore_alpha`
+      "blur on, match:namespace ^(wofi)$"
+      "ignore_alpha 0.2, match:namespace ^(wofi)$"
+    ];
+
     # Layout settings
     dwindle = {
       # pseudotile removed in Hyprland 0.56; use the `pseudo` dispatcher per-window instead

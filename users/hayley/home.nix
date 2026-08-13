@@ -6,6 +6,7 @@
   ++ map (path: ../../home/pkgs + path) [
     /hyprland/default.nix
     /waybar/default.nix
+    /wofi/default.nix
     /ghostty/default.nix
 
     # general
