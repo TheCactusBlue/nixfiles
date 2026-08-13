@@ -25,6 +25,11 @@ let
 
   exec = cmd: "hl.dsp.exec_cmd(${str cmd})";
 
+  # hyprsplit's dispatchers mirror hl.dsp but scope workspaces to the focused
+  # monitor. `require` is cached, so repeating it per bind is free. Set up in
+  # ./hyprsplit.nix, which is loaded before these binds are evaluated.
+  hs = ''require("hyprsplit")'';
+
   # hl.env(name, value)
   mkEnv = name: value: {
     _args = [
@@ -328,26 +333,33 @@ in
       (bind "${mainMod} + down" ''hl.dsp.focus({ direction = "down" })'')
     ]
     ++ (
-      # Workspaces 1-10, with 10 bound to the 0 key
+      # Workspaces 1-10, with 10 bound to the 0 key. These are per-monitor via
+      # hyprsplit, so SUPER+1 means "workspace 1 of whichever monitor is focused".
       lib.concatMap (
         i:
         let
           key = toString (lib.mod i 10);
         in
         [
-          (bind "${mainMod} + ${key}" "hl.dsp.focus({ workspace = ${toString i} })")
-          (bind "${mainMod} + SHIFT + ${key}" "hl.dsp.window.move({ workspace = ${toString i} })")
+          (bind "${mainMod} + ${key}" "${hs}.dsp.focus({ workspace = ${toString i} })")
+          (bind "${mainMod} + SHIFT + ${key}" "${hs}.dsp.window.move({ workspace = ${toString i} })")
         ]
       ) (lib.range 1 10)
     )
     ++ [
+      # Reclaim windows stranded on workspaces of a monitor that got unplugged
+      (bind "${mainMod} + G" "${hs}.dsp.grab_rogue_windows()")
+      # Swap the windows of this monitor's active workspace with the next monitor's
+      (bind "${mainMod} + D" ''${hs}.dsp.workspace.swap_monitors({ monitor1 = "current", monitor2 = "+1" })'')
+
       # Special workspace
       (bind "${mainMod} + S" ''hl.dsp.workspace.toggle_special("magic")'')
       (bind "${mainMod} + SHIFT + S" ''hl.dsp.window.move({ workspace = "special:magic" })'')
 
-      # Mouse workspace switching
-      (bind "${mainMod} + mouse_down" ''hl.dsp.focus({ workspace = "e+1" })'')
-      (bind "${mainMod} + mouse_up" ''hl.dsp.focus({ workspace = "e-1" })'')
+      # Mouse workspace switching. hyprsplit reinterprets "e±1" as "next/prev
+      # non-empty workspace of this monitor" instead of a global scan.
+      (bind "${mainMod} + mouse_down" ''${hs}.dsp.focus({ workspace = "e+1" })'')
+      (bind "${mainMod} + mouse_up" ''${hs}.dsp.focus({ workspace = "e-1" })'')
 
       # Screenshots
       (bind "${mainMod} + PRINT" (exec "hyprshot -m window --clipboard-only"))

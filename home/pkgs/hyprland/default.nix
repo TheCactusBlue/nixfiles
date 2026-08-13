@@ -8,13 +8,14 @@
   imports = [
     ./gtk-fix.nix
     ./settings.nix
+    ./hyprsplit.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;
     # hyprlang is deprecated since Hyprland 0.55; this writes hyprland.lua
     # instead of hyprland.conf. Becomes the default at stateVersion 26.05.
     configType = "lua";
-    # plugins = [ pkgs.hyprlandPlugins.hyprsplit ];
+    # hyprsplit is no longer a plugin — it's a Lua library now, see ./hyprsplit.nix
   };
 
   services.hypridle = {
