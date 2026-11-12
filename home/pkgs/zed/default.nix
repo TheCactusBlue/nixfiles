@@ -4,7 +4,7 @@
   lib,
   ...
 }:
-let
+ let
   fontFamily = "JetBrainsMono Nerd Font Mono";
   fontSize = 14;
   lineHeight = {

@@ -28,7 +28,7 @@
       }
     ];
 
-    initExtra = ''
+    initContent = ''
       alias c="claude"
     '';
   };
