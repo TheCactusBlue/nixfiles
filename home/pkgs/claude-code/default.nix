@@ -32,6 +32,7 @@ in
       voiceEnabled = true;
       skipAutoPermissionPrompt = true;
       remoteControlAtStartup = false;
+      idleCompaction = false;
       permissions.defaultMode = "auto";
       permissions.allow = [
         "Skill(*)"
@@ -74,16 +75,9 @@ in
       env = {
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
         CLAUDE_CODE_NO_FLICKER = "1";
-      };
-
-      sandbox = {
-        enabled = true;
-        autoAllowBashIfSandboxed = true;
-        network.allowedDomains = allowedDomains;
-        excludedCommands = [
-          "git"
-          "docker"
-        ];
+        # Don't attach to the editor (Zed/VSCode terminals auto-connect otherwise),
+        # which is what injects the "⧉ In <file>" open-file/selection context.
+        CLAUDE_CODE_AUTO_CONNECT_IDE = "false";
       };
 
       spinnerVerbs = {
@@ -128,8 +122,6 @@ in
       sox
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
-      bubblewrap
-      socat
       xclip
       playwright-mcp
     ];
