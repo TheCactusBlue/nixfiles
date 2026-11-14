@@ -33,6 +33,14 @@ in
       skipAutoPermissionPrompt = true;
       remoteControlAtStartup = false;
       idleCompaction = false;
+      autoMemoryEnabled = false;
+      extraKnownMarketplaces.claude-plugins-official.source = {
+        source = "github";
+        repo = "anthropics/claude-plugins-official";
+      };
+      enabledPlugins = {
+        "frontend-design@claude-plugins-official" = true;
+      };
       permissions.defaultMode = "auto";
       permissions.allow = [
         "Skill(*)"
@@ -108,7 +116,8 @@ in
     mcpServers = {
       playwright = {
         type = "stdio";
-        command = "mcp-server-playwright";
+        # nixpkgs' wrapper pins PLAYWRIGHT_BROWSERS_PATH to Nix-built browsers.
+        command = lib.getExe pkgs.playwright-mcp;
         args = [ ];
         env = { };
       };
@@ -123,6 +132,6 @@ in
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       xclip
-      playwright-mcp
+      wl-clipboard
     ];
 }

@@ -50,6 +50,7 @@
             "class<discord>" = "";
             "class<obsidian>" = "󰹕";
             # "class<com.mitchellh.ghostty>" = "";
+            "class<dev.zed.Zed>" = "󰅩";
             "code" = "󰨞";
           };
         };
