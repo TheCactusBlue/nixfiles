@@ -118,7 +118,8 @@ in
         type = "stdio";
         # nixpkgs' wrapper pins PLAYWRIGHT_BROWSERS_PATH to Nix-built browsers.
         command = lib.getExe pkgs.playwright-mcp;
-        args = [ ];
+        # Headless so it never spawns windows that disturb the tiling layout.
+        args = [ "--headless" ];
         env = { };
       };
     };
